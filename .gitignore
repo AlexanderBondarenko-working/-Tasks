@@ -35,3 +35,5 @@
 /task1/task1/Debug/*
 /Debug/*
 /task1/.vs/*
+/task1/x64/*
+/task1/task1/x64/*
