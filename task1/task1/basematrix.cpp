@@ -14,7 +14,21 @@ BaseMatrix::BaseMatrix(const int numberOflines, const int numberOfcolums,
 
 BaseMatrix::BaseMatrix(const BaseMatrix& source)
 {
-   
+    numberOflines = source.numberOflines;
+    numberOfcolums = source.numberOfcolums;
+    if (source.matrix) {
+        matrix = new int* [numberOflines];
+        for (int index = 0; index < numberOflines; ++index) {
+            matrix[index] = new int[numberOfcolums];
+        }
+        for (int indexOflines = 0; indexOflines < numberOflines; ++indexOflines) {
+            for (int indexOfcolums = 0; indexOfcolums < numberOfcolums; ++indexOfcolums) {
+                matrix[indexOflines][indexOfcolums] = source.matrix[indexOflines][indexOfcolums];
+            }
+        }
+    }
+    else
+        matrix = nullptr;
 }
 
 
