@@ -34,5 +34,9 @@ BaseMatrix::BaseMatrix(const BaseMatrix& source)
 
 
 BaseMatrix::~BaseMatrix() {
-    
+    if (matrix != nullptr) {
+        for (int index = 0; index < numberOflines; ++index) {
+            delete[] matrix[index];
+        }
+    }
 }
