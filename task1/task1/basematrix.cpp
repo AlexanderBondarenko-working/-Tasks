@@ -31,7 +31,37 @@ BaseMatrix::BaseMatrix(const BaseMatrix& source)
         matrix = nullptr;
 }
 
+BaseMatrix& BaseMatrix::operator= (const BaseMatrix& source)
+{
+    if (this == &source) {
+        return *this;
+    }
 
+    if (matrix != nullptr) {
+        for (int index = 0; index < numberOflines; ++index) {
+            delete[] matrix[index];
+        }
+    }
+
+    numberOflines = source.numberOflines;
+    numberOfcolums = source.numberOfcolums;
+
+    if (source.matrix) {
+        matrix = new int* [numberOflines];
+        for (int index = 0; index < numberOflines; ++index) {
+            matrix[index] = new int[numberOfcolums];
+        }
+        for (int indexOflines = 0; indexOflines < numberOflines; ++indexOflines) {
+            for (int indexOfcolums = 0; indexOfcolums < numberOfcolums; ++indexOfcolums) {
+                matrix[indexOflines][indexOfcolums] = source.matrix[indexOflines][indexOfcolums];
+            }
+        }
+    }
+    else
+        matrix = nullptr;
+
+    return *this;
+}
 
 BaseMatrix::~BaseMatrix() {
     if (matrix != nullptr) {
