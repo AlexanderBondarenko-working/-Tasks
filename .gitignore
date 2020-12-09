@@ -1,0 +1,37 @@
+# Prerequisites
+*.d
+*.tlog
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Игнорировать все файлы из папки и подпапок, если таковые будут
+/task1/task1/Debug/*
+/Debug/*
+/task1/.vs/*
