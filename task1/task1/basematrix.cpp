@@ -110,3 +110,12 @@ BaseMatrix& operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondM
 
     return temporaryMatrix;
 }
+
+void BaseMatrix::out() {
+    for (int indexOflines = 0; indexOflines < numberOflines; ++indexOflines) {
+        for (int indexOfcolums = 0; indexOfcolums < numberOfcolums; ++indexOfcolums) {
+            std::cout << matrix[indexOflines][indexOfcolums];
+        }
+        std::cout << std::endl;
+    }
+}

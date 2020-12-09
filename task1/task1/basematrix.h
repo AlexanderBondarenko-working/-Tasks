@@ -1,6 +1,7 @@
 #ifndef TASK1_BASEMATRIX_H_ 
 #define TASK1_BASEMATRIX_H_ 
 
+#include <iostream>
 #include <stdexcept>
 class BaseMatrix {
 	int numberOflines;
@@ -15,7 +16,7 @@ public:
 	BaseMatrix& operator = (const BaseMatrix& source);
 	virtual ~BaseMatrix();
 	friend BaseMatrix& operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
-
+	void out();
 };
 
 #endif  // TASK1_BASEMATRIX_H_ 
