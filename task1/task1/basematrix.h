@@ -8,12 +8,13 @@ class BaseMatrix {
 	int** matrix;
 public:
 	BaseMatrix();
+	BaseMatrix(const int numberOflines, const int numberOfcolums);
 	BaseMatrix(const int numberOflines, const int numberOfcolums, const int*
 		       fillingArray, const int sizeOfarray);
 	BaseMatrix(const BaseMatrix& source);
-	BaseMatrix& operator=(const BaseMatrix& source);
+	BaseMatrix& operator = (const BaseMatrix& source);
 	virtual ~BaseMatrix();
-
+	friend BaseMatrix& operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
 
 };
 
