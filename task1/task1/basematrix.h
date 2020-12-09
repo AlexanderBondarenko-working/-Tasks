@@ -1,6 +1,7 @@
 #ifndef TASK1_BASEMATRIX_H_ 
 #define TASK1_BASEMATRIX_H_ 
 
+#include <stdexcept>
 class BaseMatrix {
 	int numberOflines;
 	int numberOfcolums;
