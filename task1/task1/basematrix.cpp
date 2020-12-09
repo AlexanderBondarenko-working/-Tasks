@@ -89,3 +89,24 @@ BaseMatrix::~BaseMatrix() {
     }
 }
 
+BaseMatrix& operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix) {
+    if ((firstMatrix.numberOflines != secondMatrix.numberOfcolums) 
+        && (firstMatrix.numberOfcolums != secondMatrix.numberOflines)) {
+        throw std::invalid_argument("wrong size of matrices");
+    }
+
+    BaseMatrix temporaryMatrix(firstMatrix.numberOflines, secondMatrix.numberOfcolums);
+    int compos;
+
+    for (int resIndexline = 0; resIndexline < temporaryMatrix.numberOfcolums; ++resIndexline) {
+        for (int resIndexColum = 0; resIndexColum < temporaryMatrix.numberOflines; ++resIndexColum) {
+            compos = 0;
+            for (int lineAndColum = 0; lineAndColum < firstMatrix.numberOfcolums; ++lineAndColum) {
+                compos += (firstMatrix.matrix[resIndexline][lineAndColum] * secondMatrix.matrix[lineAndColum][resIndexline]);
+            }
+            temporaryMatrix.matrix[resIndexline][resIndexColum] = compos;
+        }
+    }
+
+    return temporaryMatrix;
+}
