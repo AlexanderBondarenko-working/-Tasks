@@ -44,3 +44,12 @@ DiagonalMatrix::~DiagonalMatrix()
 }
 //friend BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
 void out();
+
+int DiagonalMatrix::getElement(const int line, const int colum) const {
+
+	if (line == colum) {
+		return diagonalMatrix[colum];
+	}
+
+	return 0;
+}
