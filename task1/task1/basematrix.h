@@ -15,7 +15,7 @@ public:
 	BaseMatrix(const BaseMatrix& source);
 	BaseMatrix& operator = (const BaseMatrix& source);
 	virtual ~BaseMatrix();
-	friend BaseMatrix& operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
+	friend BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
 	void out();
 };
 

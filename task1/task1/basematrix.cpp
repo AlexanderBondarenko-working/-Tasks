@@ -49,7 +49,7 @@ BaseMatrix::BaseMatrix(const BaseMatrix& source)
         matrix = nullptr;
 }
 
-BaseMatrix& BaseMatrix::operator= (const BaseMatrix& source)
+BaseMatrix& BaseMatrix::operator = (const BaseMatrix& source)
 {
     if (this == &source) {
         return *this;
@@ -89,7 +89,7 @@ BaseMatrix::~BaseMatrix() {
     }
 }
 
-BaseMatrix& operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix) {
+BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix) {
     if ((firstMatrix.numberOflines != secondMatrix.numberOfcolums) 
         && (firstMatrix.numberOfcolums != secondMatrix.numberOflines)) {
         throw std::invalid_argument("wrong size of matrices");
@@ -102,20 +102,20 @@ BaseMatrix& operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondM
         for (int resIndexColum = 0; resIndexColum < temporaryMatrix.numberOflines; ++resIndexColum) {
             compos = 0;
             for (int lineAndColum = 0; lineAndColum < firstMatrix.numberOfcolums; ++lineAndColum) {
-                compos += (firstMatrix.matrix[resIndexline][lineAndColum] * secondMatrix.matrix[lineAndColum][resIndexline]);
+                compos += (firstMatrix.matrix[resIndexline][lineAndColum] * secondMatrix.matrix[lineAndColum][resIndexColum]);
             }
             temporaryMatrix.matrix[resIndexline][resIndexColum] = compos;
         }
     }
-
     return temporaryMatrix;
 }
 
 void BaseMatrix::out() {
     for (int indexOflines = 0; indexOflines < numberOflines; ++indexOflines) {
         for (int indexOfcolums = 0; indexOfcolums < numberOfcolums; ++indexOfcolums) {
-            std::cout << matrix[indexOflines][indexOfcolums];
+            std::cout << matrix[indexOflines][indexOfcolums] << " ";
         }
-        std::cout << std::endl;
+        std::cout << "\n";
     }
+    std::cout << std::endl;
 }
