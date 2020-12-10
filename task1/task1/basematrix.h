@@ -18,7 +18,9 @@ public:
 	BaseMatrix& operator = (const BaseMatrix& source);
 	virtual ~BaseMatrix();
 	friend BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
-	void out();
+	virtual void out();
+	int getNumberOflines() const;
+	int getNumberOfcolums() const;
 };
 
 #endif  // TASK1_BASEMATRIX_H_ 

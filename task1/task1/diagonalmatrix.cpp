@@ -43,7 +43,9 @@ DiagonalMatrix::~DiagonalMatrix()
 	delete[] diagonalMatrix;
 }
 //friend BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
-void out();
+void DiagonalMatrix::out() {
+    
+}
 
 int DiagonalMatrix::getElement(const int line, const int colum) const {
 

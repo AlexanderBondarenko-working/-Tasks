@@ -117,3 +117,11 @@ void BaseMatrix::initMatrix() {
         matrix[index] = new int[numberOfcolums];
     }
 }
+
+int BaseMatrix::getNumberOflines() const {
+    return numberOflines;
+}
+
+int BaseMatrix::getNumberOfcolums() const {
+    return numberOfcolums;
+}

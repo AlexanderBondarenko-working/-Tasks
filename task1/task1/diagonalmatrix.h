@@ -15,6 +15,6 @@ public:
 	~DiagonalMatrix();
 	virtual int getElement(const int line, const int colum) const;
 	//friend BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
-	void out();
+	virtual void out();
 };
 #endif  // TASK1_DIAGONALMATRIX_H_ 
