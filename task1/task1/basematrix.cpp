@@ -12,10 +12,7 @@ BaseMatrix::BaseMatrix(const int numberOflines, const int numberOfcolums,
         throw std::invalid_argument("invalid array length");
     }
 
-    matrix = new int* [numberOflines];
-    for (int index = 0; index < numberOflines; ++index) {
-        matrix[index] = new int[numberOfcolums];
-    }
+    this -> initMatrix();
 
     for (int indexOflines = 0; indexOflines < numberOflines; ++indexOflines) {
         for (int indexOfcolums = 0; indexOfcolums < numberOfcolums; ++indexOfcolums) {
@@ -29,10 +26,7 @@ BaseMatrix::BaseMatrix(const BaseMatrix& source)
     numberOflines = source.numberOflines;
     numberOfcolums = source.numberOfcolums;
     if (source.matrix) {
-        matrix = new int* [numberOflines];
-        for (int index = 0; index < numberOflines; ++index) {
-            matrix[index] = new int[numberOfcolums];
-        }
+        this -> initMatrix();
         for (int indexOflines = 0; indexOflines < numberOflines; ++indexOflines) {
             for (int indexOfcolums = 0; indexOfcolums < numberOfcolums; ++indexOfcolums) {
                 matrix[indexOflines][indexOfcolums] = source.matrix[indexOflines][indexOfcolums];
@@ -59,10 +53,7 @@ BaseMatrix& BaseMatrix::operator = (const BaseMatrix& source)
     numberOfcolums = source.numberOfcolums;
 
     if (source.matrix) {
-        matrix = new int* [numberOflines];
-        for (int index = 0; index < numberOflines; ++index) {
-            matrix[index] = new int[numberOfcolums];
-        }
+        this -> initMatrix();
         for (int indexOflines = 0; indexOflines < numberOflines; ++indexOflines) {
             for (int indexOfcolums = 0; indexOfcolums < numberOfcolums; ++indexOfcolums) {
                 matrix[indexOflines][indexOfcolums] = source.matrix[indexOflines][indexOfcolums];
@@ -90,13 +81,14 @@ BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMa
     }
 
     BaseMatrix temporaryMatrix(firstMatrix.numberOflines, secondMatrix.numberOfcolums);
+    temporaryMatrix.initMatrix();
     int compos;
 
     for (int resIndexline = 0; resIndexline < temporaryMatrix.numberOfcolums; ++resIndexline) {
         for (int resIndexColum = 0; resIndexColum < temporaryMatrix.numberOflines; ++resIndexColum) {
             compos = 0;
             for (int lineAndColum = 0; lineAndColum < firstMatrix.numberOfcolums; ++lineAndColum) {
-                compos += (firstMatrix.matrix[resIndexline][lineAndColum] * secondMatrix.matrix[lineAndColum][resIndexColum]);
+                compos += (firstMatrix.getElement(resIndexline, lineAndColum) * secondMatrix.getElement(lineAndColum, resIndexColum));
             }
             temporaryMatrix.matrix[resIndexline][resIndexColum] = compos;
         }
@@ -114,7 +106,14 @@ void BaseMatrix::out() {
     std::cout << std::endl;
 }
 
-int BaseMatrix::getElement(const int line, const int colum) {
+int BaseMatrix::getElement(const int line, const int colum) const {
     
     return matrix[line][colum];
+}
+
+void BaseMatrix::initMatrix() {
+    matrix = new int* [numberOflines];
+    for (int index = 0; index < numberOflines; ++index) {
+        matrix[index] = new int[numberOfcolums];
+    }
 }
