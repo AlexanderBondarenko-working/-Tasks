@@ -3,7 +3,7 @@
 #include "basematrix.h"
 
 class DiagonalMatrix : public BaseMatrix {
-	int* matrix;
+	int* diagonalMatrix;
 public:
 	DiagonalMatrix();
 	DiagonalMatrix(const int numberOflines, const int numberOfcolums);

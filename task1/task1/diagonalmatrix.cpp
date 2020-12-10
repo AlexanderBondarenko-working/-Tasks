@@ -4,12 +4,10 @@
 DiagonalMatrix::DiagonalMatrix() : BaseMatrix() {}
 
 DiagonalMatrix::DiagonalMatrix(const int numberOflines, const int numberOfcolums) 
-{
-
-}
+    : BaseMatrix(numberOflines, numberOfcolums), diagonalMatrix(nullptr) {}
 
 DiagonalMatrix::DiagonalMatrix(const int numberOflines, const int numberOfcolums, const int*
-	fillingArray, const int sizeOfarray)
+	fillingArray, const int sizeOfarray) 
 {
 
 }
