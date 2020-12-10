@@ -1,5 +1,5 @@
-#include "basematrix.h"
-BaseMatrix::BaseMatrix() : numberOflines(0), numberOfcolums(0), matrix(nullptr) {}
+ #include "basematrix.h"
+ BaseMatrix::BaseMatrix() : numberOflines(0), numberOfcolums(0), matrix(nullptr) {}
 
  BaseMatrix::BaseMatrix(const int numberOflines, const int numberOfcolums) 
     : numberOflines(numberOflines), numberOfcolums(numberOfcolums) 

@@ -1,7 +1,9 @@
 #ifndef TASK1_DIAGONALMATRIX_H_ 
 #define TASK1_DIAGONALMATRIX_H_ 
+#include "basematrix.h"
 
 class DiagonalMatrix : public BaseMatrix {
+	int* matrix;
 public:
 	DiagonalMatrix();
 	DiagonalMatrix(const int numberOflines, const int numberOfcolums);

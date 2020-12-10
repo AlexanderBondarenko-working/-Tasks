@@ -21,6 +21,9 @@
     <ClCompile Include="basematrix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="diagonalmatrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="basematrix.h">
