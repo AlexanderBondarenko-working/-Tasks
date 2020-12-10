@@ -3,6 +3,7 @@
 #include "basematrix.h"
 
 class DiagonalMatrix : public BaseMatrix {
+	int sizeOfdiagonal;
 	int* diagonalMatrix;
 public:
 	DiagonalMatrix();
