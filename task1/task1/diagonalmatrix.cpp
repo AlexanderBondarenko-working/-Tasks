@@ -1,7 +1,7 @@
 #include "diagonalmatrix.h"
 
 
-DiagonalMatrix::DiagonalMatrix() : BaseMatrix(), sizeOfdiagonal(0) {}
+DiagonalMatrix::DiagonalMatrix() : BaseMatrix(), sizeOfdiagonal(0), diagonalMatrix(nullptr) {}
 
 DiagonalMatrix::DiagonalMatrix(const int numberOflines, const int numberOfcolums) 
     : BaseMatrix(numberOflines, numberOfcolums), diagonalMatrix(nullptr), sizeOfdiagonal(numberOfcolums) {}
@@ -20,7 +20,7 @@ DiagonalMatrix::DiagonalMatrix(const int numberOflines, const int numberOfcolums
 	}
 }
 
-DiagonalMatrix::DiagonalMatrix(const DiagonalMatrix& source) : BaseMatrix(source)
+DiagonalMatrix::DiagonalMatrix(const DiagonalMatrix& source) : BaseMatrix(source), sizeOfdiagonal(source.sizeOfdiagonal)
 {
 	if (source.diagonalMatrix) {
 		diagonalMatrix = new int[source.sizeOfdiagonal];
@@ -35,6 +35,27 @@ DiagonalMatrix::DiagonalMatrix(const DiagonalMatrix& source) : BaseMatrix(source
 
 DiagonalMatrix& DiagonalMatrix::operator = (const DiagonalMatrix& source)
 {
+
+	if (this == &source) {
+		return *this;
+	}
+
+	if (diagonalMatrix != nullptr) {
+		delete[] diagonalMatrix;
+	}
+
+	*this = source;
+
+    if (source.diagonalMatrix) {
+		diagonalMatrix = new int[sizeOfdiagonal];
+		for (int index = 0; index < sizeOfdiagonal; ++index) {
+			diagonalMatrix[index] = source.diagonalMatrix[index];
+		}
+	}
+	else {
+		diagonalMatrix = nullptr;
+	}
+
 	return *this;
 }
 
@@ -42,7 +63,7 @@ DiagonalMatrix::~DiagonalMatrix()
 {
 	delete[] diagonalMatrix;
 }
-//friend BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
+
 void DiagonalMatrix::out() {
 	for (int indexOflines = 0; indexOflines < this -> getNumberOflines(); ++indexOflines) {
 		for (int indexOfcolums = 0; indexOfcolums < this -> getNumberOflines(); ++indexOfcolums) {
