@@ -17,6 +17,7 @@ public:
 	virtual ~BaseMatrix();
 	friend BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
 	void out();
+	virtual int getElement(const int line, const int colum);
 };
 
 #endif  // TASK1_BASEMATRIX_H_ 

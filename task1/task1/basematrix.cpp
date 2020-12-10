@@ -113,3 +113,8 @@ void BaseMatrix::out() {
     }
     std::cout << std::endl;
 }
+
+int BaseMatrix::getElement(const int line, const int colum) {
+    
+    return matrix[line][colum];
+}
