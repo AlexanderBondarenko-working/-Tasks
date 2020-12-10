@@ -3,13 +3,13 @@
 
 DiagonalMatrix::DiagonalMatrix() : BaseMatrix(), sizeOfdiagonal(0), diagonalMatrix(nullptr) {}
 
-DiagonalMatrix::DiagonalMatrix(const int numberOflines, const int numberOfcolums) 
-    : BaseMatrix(numberOflines, numberOfcolums), diagonalMatrix(nullptr), sizeOfdiagonal(numberOfcolums) {}
+DiagonalMatrix::DiagonalMatrix(const int numberOflines, const int numberOfColums) 
+    : BaseMatrix(numberOflines, numberOfColums), diagonalMatrix(nullptr), sizeOfdiagonal(numberOfColums) {}
 
-DiagonalMatrix::DiagonalMatrix(const int numberOflines, const int numberOfcolums, const int*
-	fillingArray, const int sizeOfarray) : BaseMatrix(numberOflines, numberOfcolums), sizeOfdiagonal(sizeOfarray)
+DiagonalMatrix::DiagonalMatrix(const int numberOflines, const int numberOfColums, const int*
+	fillingArray, const int sizeOfarray) : BaseMatrix(numberOflines, numberOfColums), sizeOfdiagonal(sizeOfarray)
 {
-	if (numberOfcolums != sizeOfarray) {
+	if (numberOfColums != sizeOfarray) {
 		throw std::invalid_argument("invalid array length");
 	}
 
@@ -65,8 +65,8 @@ DiagonalMatrix::~DiagonalMatrix()
 }
 
 void DiagonalMatrix::out() {
-	for (int indexOflines = 0; indexOflines < this -> getNumberOflines(); ++indexOflines) {
-		for (int indexOfcolums = 0; indexOfcolums < this -> getNumberOfcolums(); ++indexOfcolums) {
+	for (int indexOflines = 0; indexOflines < this -> getNumberOfRows(); ++indexOflines) {
+		for (int indexOfcolums = 0; indexOfcolums < this -> getnumberOfColums(); ++indexOfcolums) {
 			if (indexOflines == indexOfcolums) {
 				std::cout << diagonalMatrix[indexOfcolums] << " ";
 			}

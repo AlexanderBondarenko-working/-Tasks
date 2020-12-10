@@ -1,10 +1,10 @@
-#include <exception>
+﻿#include <exception>
 #include "basematrix.h"
 #include "diagonalmatrix.h"
 using namespace std;
 
 int main() {
-	int fillingArray[28] { 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 1, 2, 3, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 6, 6};
+	int fillingArray[28] { 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 1, 2, 3, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 6, 6 };
 	int forNullMatrix[28]{ 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 1, 2, 3, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 6, 6 };
 	int forDiagonalMatrix[4]{ 1, 2, 3, 4 };
 	try
@@ -15,7 +15,7 @@ int main() {
 		DiagonalMatrix diagMatr(7, 4, forDiagonalMatrix, 4);
 		firstBaseMatr.out();
 		diagMatr.out();
-		BaseMatrix result = (firstBaseMatr * diagMatr);
+		BaseMatrix result = (firstBaseMatr * diagMatr); //нельзя 
 		result.out();
 
 	}

@@ -4,14 +4,15 @@
 #include <iostream>
 #include <stdexcept>
 class BaseMatrix {
-	int numberOflines;
-	int numberOfcolums;
+	int numberOfRows; 
+	int numberOfColums;
 	int** matrix;
 	void initMatrix();
-public:
+protected:
 	BaseMatrix();
-	BaseMatrix(const int numberOflines, const int numberOfcolums);
-	BaseMatrix(const int numberOflines, const int numberOfcolums, const int*
+	BaseMatrix(const int numberOfRows, const int numberOfColums);
+public:
+	BaseMatrix(const int numberOfRows, const int numberOfColums, const int*
 		       fillingArray, const int sizeOfarray);
 	BaseMatrix(const BaseMatrix& source);
 	virtual int getElement(const int line, const int colum) const;
@@ -19,8 +20,8 @@ public:
 	virtual ~BaseMatrix();
 	friend BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
 	virtual void out();
-	int getNumberOflines() const;
-	int getNumberOfcolums() const;
+	int getNumberOfRows() const;
+	int getnumberOfColums() const;
 };
 
 #endif  // TASK1_BASEMATRIX_H_ 

@@ -1,14 +1,14 @@
-#ifndef TASK1_DIAGONALMATRIX_H_ 
+﻿#ifndef TASK1_DIAGONALMATRIX_H_ 
 #define TASK1_DIAGONALMATRIX_H_ 
 #include "basematrix.h"
-
+//шаблон
 class DiagonalMatrix : public BaseMatrix {
-	int sizeOfdiagonal;
+	int sizeOfdiagonal; //возможно лишняя
 	int* diagonalMatrix;
 public:
 	DiagonalMatrix();
-	DiagonalMatrix(const int numberOflines, const int numberOfcolums);
-	DiagonalMatrix(const int numberOflines, const int numberOfcolums, const int*
+	DiagonalMatrix(const int numberOflines, const int numberOfColums); // const перебор не надо
+	DiagonalMatrix(const int numberOflines, const int numberOfColums, const int*
 		fillingArray, const int sizeOfarray);
 	DiagonalMatrix(const DiagonalMatrix& source);
 	DiagonalMatrix& operator = (const DiagonalMatrix& source);
