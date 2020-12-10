@@ -40,7 +40,7 @@ DiagonalMatrix& DiagonalMatrix::operator = (const DiagonalMatrix& source)
 
 DiagonalMatrix::~DiagonalMatrix()
 {
-
+	delete[] diagonalMatrix;
 }
 //friend BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
 void out();
