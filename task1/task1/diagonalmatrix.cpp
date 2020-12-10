@@ -66,7 +66,7 @@ DiagonalMatrix::~DiagonalMatrix()
 
 void DiagonalMatrix::out() {
 	for (int indexOflines = 0; indexOflines < this -> getNumberOflines(); ++indexOflines) {
-		for (int indexOfcolums = 0; indexOfcolums < this -> getNumberOflines(); ++indexOfcolums) {
+		for (int indexOfcolums = 0; indexOfcolums < this -> getNumberOfcolums(); ++indexOfcolums) {
 			if (indexOflines == indexOfcolums) {
 				std::cout << diagonalMatrix[indexOfcolums] << " ";
 			}
