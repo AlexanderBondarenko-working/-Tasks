@@ -44,7 +44,18 @@ DiagonalMatrix::~DiagonalMatrix()
 }
 //friend BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
 void DiagonalMatrix::out() {
-    
+	for (int indexOflines = 0; indexOflines < this -> getNumberOflines(); ++indexOflines) {
+		for (int indexOfcolums = 0; indexOfcolums < this -> getNumberOflines(); ++indexOfcolums) {
+			if (indexOflines == indexOfcolums) {
+				std::cout << diagonalMatrix[indexOfcolums] << " ";
+			}
+			else {
+				std::cout << 0 << " ";
+			}
+		}
+		std::cout << "\n";
+	}
+	std::cout << std::endl;
 }
 
 int DiagonalMatrix::getElement(const int line, const int colum) const {
