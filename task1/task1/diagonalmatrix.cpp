@@ -25,9 +25,6 @@ DiagonalMatrix::DiagonalMatrix(const DiagonalMatrix& source) : BaseMatrix(source
 	if (source.diagonalMatrix) {
 		diagonalMatrix = new int[source.sizeOfdiagonal];
 		std::memcpy(diagonalMatrix, source.diagonalMatrix, (sizeof(int) * sizeOfdiagonal));
-		/*for (int index = 0; index < sizeOfdiagonal; ++index) {
-			diagonalMatrix[index] = source.diagonalMatrix[index];
-		}*/
 	}
     else
 		diagonalMatrix = nullptr;
@@ -49,9 +46,6 @@ DiagonalMatrix& DiagonalMatrix::operator = (const DiagonalMatrix& source)
     if (source.diagonalMatrix) {
 		diagonalMatrix = new int[sizeOfdiagonal];
 		std::memcpy(diagonalMatrix, source.diagonalMatrix, (sizeof(int) * sizeOfdiagonal));
-		/*for (int index = 0; index < sizeOfdiagonal; ++index) {
-			diagonalMatrix[index] = source.diagonalMatrix[index];
-		}*/
 	}
 	else {
 		diagonalMatrix = nullptr;
@@ -65,19 +59,25 @@ DiagonalMatrix::~DiagonalMatrix()
 	delete[] diagonalMatrix;
 }
 
-void DiagonalMatrix::out() {
-	for (int indexOflines = 0; indexOflines < this -> getNumberOfRows(); ++indexOflines) {
-		for (int indexOfcolums = 0; indexOfcolums < this -> getnumberOfColums(); ++indexOfcolums) {
+std::string DiagonalMatrix::matrixToString() {
+	std::string matrixInString;
+	matrixInString.reserve(((sizeof(int) * (this->getNumberOfRows())) + (this->getNumberOfRows()) + 1) * (this->getnumberOfColums()));
+
+	for (int indexOflines = 0; indexOflines < this->getNumberOfRows(); ++indexOflines) {
+		for (int indexOfcolums = 0; indexOfcolums < this->getnumberOfColums(); ++indexOfcolums) {
 			if (indexOflines == indexOfcolums) {
-				std::cout << diagonalMatrix[indexOfcolums] << " ";
+				matrixInString.append(std::to_string(diagonalMatrix[indexOfcolums]));
+				matrixInString.append(" ");
 			}
 			else {
-				std::cout << 0 << " ";
+				matrixInString.append("0");
+				matrixInString.append(" ");
 			}
 		}
-		std::cout << "\n";
+		matrixInString.append("\n");
 	}
-	std::cout << std::endl;
+
+	return matrixInString;
 }
 
 int DiagonalMatrix::getElement(int line, int colum) const {

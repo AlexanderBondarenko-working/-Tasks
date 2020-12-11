@@ -101,14 +101,20 @@ BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMa
     return temporaryMatrix;
 }
 
-void BaseMatrix::out() { // matrixToString
+
+std::string BaseMatrix::matrixToString() {
+    std::string matrixInString;
+    matrixInString.reserve(((sizeof(int) * numberOfRows) + numberOfRows + 1) * numberOfColums);
+
     for (int indexOflines = 0; indexOflines < numberOfRows; ++indexOflines) {
         for (int indexOfcolums = 0; indexOfcolums < numberOfColums; ++indexOfcolums) {
-            std::cout << matrix[indexOflines][indexOfcolums] << " ";
+            matrixInString.append(std::to_string(matrix[indexOflines][indexOfcolums]));
+            matrixInString.append(" ");
         }
-        std::cout << "\n";
+        matrixInString.append("\n");
     }
-    std::cout << std::endl;
+    
+    return matrixInString;
 }
 
 int BaseMatrix::getElement(int line, int colum) const { // проверка на выход за пределы

@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <string>
+//template
 class BaseMatrix {
 	int numberOfRows; 
 	int numberOfColums;
@@ -20,7 +22,7 @@ public:
 	virtual ~BaseMatrix();
 	friend BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
 	friend int scalarMultiplication(const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix, int resIndexColum, int resIndexline);
-	virtual void out();
+	virtual std::string matrixToString();
 	int getNumberOfRows() const;
 	int getnumberOfColums() const;
 };

@@ -11,12 +11,13 @@ int main() {
 	{
 		BaseMatrix firstBaseMatr(4, 7, fillingArray, 28);
 		//objOfBaseMatr.out();
+		cout << firstBaseMatr.matrixToString() << "\n";
 		BaseMatrix secondBaseMatr(7, 4, forNullMatrix, 28);
 		DiagonalMatrix diagMatr(7, 4, forDiagonalMatrix, 4);
-		firstBaseMatr.out();
-		diagMatr.out();
+		cout << diagMatr.matrixToString() << "\n";
 		BaseMatrix result = (firstBaseMatr * diagMatr); //нельзя 
-		result.out();
+		cout << result.matrixToString() << "\n";
+		
 
 	}
 	catch (std::exception& exception)
