@@ -117,9 +117,12 @@ std::string BaseMatrix::matrixToString() {
     return matrixInString;
 }
 
-int BaseMatrix::getElement(int line, int colum) const { // проверка на выход за пределы
+int BaseMatrix::getElement(int row, int colum) const {
+    if (((row <= 0) || (row >= numberOfRows)) || ((colum <= 0) || (colum >= numberOfColums))) {
+        throw std::out_of_range("out of range in getElement");
+    }
     
-    return matrix[line][colum];
+    return matrix[row][colum];
 }
 
 void BaseMatrix::allocateMemory() {
@@ -133,6 +136,6 @@ int BaseMatrix::getNumberOfRows() const {
     return numberOfRows;
 }
 
-int BaseMatrix::getnumberOfColums() const {
+int BaseMatrix::getNumberOfColums() const {
     return numberOfColums;
 }

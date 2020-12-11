@@ -17,14 +17,14 @@ public:
 	BaseMatrix(int numberOfRows, int numberOfColums, const int*
 		       fillingArray, int sizeOfarray);
 	BaseMatrix(const BaseMatrix& source);
-	virtual int getElement(int line, int colum) const;
+	virtual int getElement(int row, int colum) const;
 	BaseMatrix& operator = (const BaseMatrix& source);
 	virtual ~BaseMatrix();
 	friend BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
 	friend int scalarMultiplication(const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix, int resIndexColum, int resIndexline);
 	virtual std::string matrixToString();
 	int getNumberOfRows() const;
-	int getnumberOfColums() const;
+	int getNumberOfColums() const;
 };
 
 #endif  // TASK1_BASEMATRIX_H_ 
