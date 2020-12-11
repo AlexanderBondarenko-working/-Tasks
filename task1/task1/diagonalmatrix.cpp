@@ -3,11 +3,11 @@
 
 DiagonalMatrix::DiagonalMatrix() : BaseMatrix(), sizeOfdiagonal(0), diagonalMatrix(nullptr) {}
 
-DiagonalMatrix::DiagonalMatrix(const int numberOflines, const int numberOfColums) 
+DiagonalMatrix::DiagonalMatrix(int numberOflines, int numberOfColums) 
     : BaseMatrix(numberOflines, numberOfColums), diagonalMatrix(nullptr), sizeOfdiagonal(numberOfColums) {}
 
-DiagonalMatrix::DiagonalMatrix(const int numberOflines, const int numberOfColums, const int*
-	fillingArray, const int sizeOfarray) : BaseMatrix(numberOflines, numberOfColums), sizeOfdiagonal(sizeOfarray)
+DiagonalMatrix::DiagonalMatrix(int numberOflines, int numberOfColums, const int*
+	fillingArray, int sizeOfarray) : BaseMatrix(numberOflines, numberOfColums), sizeOfdiagonal(sizeOfarray)
 {
 	if (numberOfColums != sizeOfarray) {
 		throw std::invalid_argument("invalid array length");
@@ -24,10 +24,10 @@ DiagonalMatrix::DiagonalMatrix(const DiagonalMatrix& source) : BaseMatrix(source
 {
 	if (source.diagonalMatrix) {
 		diagonalMatrix = new int[source.sizeOfdiagonal];
-
-		for (int index = 0; index < sizeOfdiagonal; ++index) {
+		std::memcpy(diagonalMatrix, source.diagonalMatrix, (sizeof(int) * sizeOfdiagonal));
+		/*for (int index = 0; index < sizeOfdiagonal; ++index) {
 			diagonalMatrix[index] = source.diagonalMatrix[index];
-		}
+		}*/
 	}
     else
 		diagonalMatrix = nullptr;
@@ -48,9 +48,10 @@ DiagonalMatrix& DiagonalMatrix::operator = (const DiagonalMatrix& source)
 
     if (source.diagonalMatrix) {
 		diagonalMatrix = new int[sizeOfdiagonal];
-		for (int index = 0; index < sizeOfdiagonal; ++index) {
+		std::memcpy(diagonalMatrix, source.diagonalMatrix, (sizeof(int) * sizeOfdiagonal));
+		/*for (int index = 0; index < sizeOfdiagonal; ++index) {
 			diagonalMatrix[index] = source.diagonalMatrix[index];
-		}
+		}*/
 	}
 	else {
 		diagonalMatrix = nullptr;
@@ -79,7 +80,7 @@ void DiagonalMatrix::out() {
 	std::cout << std::endl;
 }
 
-int DiagonalMatrix::getElement(const int line, const int colum) const {
+int DiagonalMatrix::getElement(int line, int colum) const {
 
 	if (line == colum) {
 		return diagonalMatrix[colum];

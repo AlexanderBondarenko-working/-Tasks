@@ -1,18 +1,19 @@
 ﻿ #include "basematrix.h"
+ #include <cstring>
  BaseMatrix::BaseMatrix() : numberOfRows(0), numberOfColums(0), matrix(nullptr) {}
 
- BaseMatrix::BaseMatrix(const int numberOfRows, const int numberOfColums) 
+ BaseMatrix::BaseMatrix(int numberOfRows, int numberOfColums) 
     : numberOfRows(numberOfRows), numberOfColums(numberOfColums), matrix(nullptr) {}
 
-BaseMatrix::BaseMatrix(const int numberOfRows, const int numberOfColums,
-    const int* fillingArray, const int sizeOfarray)
+BaseMatrix::BaseMatrix(int numberOfRows, int numberOfColums,
+    const int* fillingArray, int sizeOfarray)
     : numberOfRows(numberOfRows), numberOfColums(numberOfColums)
 {
     if ((numberOfRows * numberOfColums) != sizeOfarray) {
         throw std::invalid_argument("invalid array length");
     }
 
-    this -> initMatrix();
+    this -> allocateMemory();
 
     for (int indexOflines = 0; indexOflines < numberOfRows; ++indexOflines) {
         for (int indexOfcolums = 0; indexOfcolums < numberOfColums; ++indexOfcolums) {
@@ -26,11 +27,9 @@ BaseMatrix::BaseMatrix(const BaseMatrix& source)
     numberOfRows = source.numberOfRows;
     numberOfColums = source.numberOfColums;
     if (source.matrix) {
-        this -> initMatrix();
+        this -> allocateMemory();
         for (int indexOflines = 0; indexOflines < numberOfRows; ++indexOflines) {
-            for (int indexOfcolums = 0; indexOfcolums < numberOfColums; ++indexOfcolums) {
-                matrix[indexOflines][indexOfcolums] = source.matrix[indexOflines][indexOfcolums];
-            }
+            std::memcpy(matrix[indexOflines], source.matrix[indexOflines], (sizeof(int) * numberOfColums));
         }
     }
     else
@@ -54,12 +53,10 @@ BaseMatrix& BaseMatrix::operator = (const BaseMatrix& source)
     numberOfColums = source.numberOfColums;
 
     if (source.matrix) {
-        this -> initMatrix();
+        this -> allocateMemory();
         for (int indexOflines = 0; indexOflines < numberOfRows; ++indexOflines) {
-            for (int indexOfcolums = 0; indexOfcolums < numberOfColums; ++indexOfcolums) {
-                matrix[indexOflines][indexOfcolums] = source.matrix[indexOflines][indexOfcolums];
-            }
-        } // копировать блоком memcpi
+            std::memcpy(matrix[indexOflines], source.matrix[indexOflines], (sizeof(int) * numberOfColums));
+        } 
     }
     else
         matrix = nullptr;
@@ -76,23 +73,29 @@ BaseMatrix::~BaseMatrix() {
     }
 }
 
+int scalarMultiplication(const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix, int tempMatrColum, int tempMatrRow){
+
+    int temporaryRezult = 0;
+    for (int lineAndColum = 0; lineAndColum < firstMatrix.numberOfColums; ++lineAndColum) {
+        temporaryRezult += (firstMatrix.getElement(tempMatrRow, lineAndColum) * secondMatrix.getElement(lineAndColum, tempMatrColum));
+    }
+
+    return temporaryRezult;
+}
+
 BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix) {
+    
     if ((firstMatrix.numberOfRows != secondMatrix.numberOfColums) 
         && (firstMatrix.numberOfColums != secondMatrix.numberOfRows)) {
         throw std::invalid_argument("wrong size of matrices");
     }
 
     BaseMatrix temporaryMatrix(firstMatrix.numberOfRows, secondMatrix.numberOfColums);
-    temporaryMatrix.initMatrix(); // в динамическое выделение
-    int temporaryRezult; 
+    temporaryMatrix.allocateMemory(); // в динамическое выделение
 
-    for (int resIndexline = 0; resIndexline < temporaryMatrix.numberOfColums; ++resIndexline) { // может отдельный метод . сократьть кол-во циклов
-        for (int resIndexColum = 0; resIndexColum < temporaryMatrix.numberOfRows; ++resIndexColum) {
-            temporaryRezult = 0;
-            for (int lineAndColum = 0; lineAndColum < firstMatrix.numberOfColums; ++lineAndColum) {
-                temporaryRezult += (firstMatrix.getElement(resIndexline, lineAndColum) * secondMatrix.getElement(lineAndColum, resIndexColum));
-            }
-            temporaryMatrix.matrix[resIndexline][resIndexColum] = temporaryRezult;
+    for (int tempMatrRow = 0; tempMatrRow < temporaryMatrix.numberOfColums; ++tempMatrRow) {
+        for (int tempMatrColum = 0; tempMatrColum < temporaryMatrix.numberOfRows; ++tempMatrColum) {
+            temporaryMatrix.matrix[tempMatrRow][tempMatrColum] = scalarMultiplication(firstMatrix, secondMatrix, tempMatrColum, tempMatrRow);
         }
     }
     return temporaryMatrix;
@@ -108,12 +111,12 @@ void BaseMatrix::out() { // matrixToString
     std::cout << std::endl;
 }
 
-int BaseMatrix::getElement(const int line, const int colum) const { // проверка на выход за пределы
+int BaseMatrix::getElement(int line, int colum) const { // проверка на выход за пределы
     
     return matrix[line][colum];
 }
 
-void BaseMatrix::initMatrix() { //название allocate memory
+void BaseMatrix::allocateMemory() {
     matrix = new int* [numberOfRows];
     for (int index = 0; index < numberOfRows; ++index) {
         matrix[index] = new int[numberOfColums];

@@ -7,13 +7,13 @@ class DiagonalMatrix : public BaseMatrix {
 	int* diagonalMatrix;
 public:
 	DiagonalMatrix();
-	DiagonalMatrix(const int numberOflines, const int numberOfColums); // const перебор не надо
-	DiagonalMatrix(const int numberOflines, const int numberOfColums, const int*
+	DiagonalMatrix(int numberOflines, int numberOfColums); // const перебор не надо
+	DiagonalMatrix(int numberOflines, int numberOfColums, const int*
 		fillingArray, const int sizeOfarray);
 	DiagonalMatrix(const DiagonalMatrix& source);
 	DiagonalMatrix& operator = (const DiagonalMatrix& source);
 	~DiagonalMatrix();
-	virtual int getElement(const int line, const int colum) const;
+	virtual int getElement(int line, int colum) const;
 	//friend BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
 	virtual void out();
 };

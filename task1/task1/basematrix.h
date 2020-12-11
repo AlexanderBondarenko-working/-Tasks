@@ -7,18 +7,19 @@ class BaseMatrix {
 	int numberOfRows; 
 	int numberOfColums;
 	int** matrix;
-	void initMatrix();
+	void allocateMemory();
 protected:
 	BaseMatrix();
-	BaseMatrix(const int numberOfRows, const int numberOfColums);
+	BaseMatrix(int numberOfRows, int numberOfColums);
 public:
-	BaseMatrix(const int numberOfRows, const int numberOfColums, const int*
-		       fillingArray, const int sizeOfarray);
+	BaseMatrix(int numberOfRows, int numberOfColums, const int*
+		       fillingArray, int sizeOfarray);
 	BaseMatrix(const BaseMatrix& source);
-	virtual int getElement(const int line, const int colum) const;
+	virtual int getElement(int line, int colum) const;
 	BaseMatrix& operator = (const BaseMatrix& source);
 	virtual ~BaseMatrix();
 	friend BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix);
+	friend int scalarMultiplication(const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix, int resIndexColum, int resIndexline);
 	virtual void out();
 	int getNumberOfRows() const;
 	int getnumberOfColums() const;
