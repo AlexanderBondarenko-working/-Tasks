@@ -1,12 +1,16 @@
 ﻿ #include "basematrix.h"
  #include <cstring>
- BaseMatrix::BaseMatrix() : numberOfRows(0), numberOfColums(0), matrix(nullptr) {}
 
- BaseMatrix::BaseMatrix(int numberOfRows, int numberOfColums) 
+ template <typename T>
+ BaseMatrix<T>::BaseMatrix() : numberOfRows(0), numberOfColums(0), matrix(nullptr) {}
+
+ template <typename T>
+ BaseMatrix<T>::BaseMatrix(int numberOfRows, int numberOfColums)
     : numberOfRows(numberOfRows), numberOfColums(numberOfColums), matrix(nullptr) {}
 
-BaseMatrix::BaseMatrix(int numberOfRows, int numberOfColums,
-    const int* fillingArray, int sizeOfarray)
+template <typename T>
+BaseMatrix<T>::BaseMatrix(int numberOfRows, int numberOfColums,
+    const T* fillingArray, int sizeOfarray)
     : numberOfRows(numberOfRows), numberOfColums(numberOfColums)
 {
     if ((numberOfRows * numberOfColums) != sizeOfarray) {
@@ -21,22 +25,22 @@ BaseMatrix::BaseMatrix(int numberOfRows, int numberOfColums,
         }
     }
 }
-
-BaseMatrix::BaseMatrix(const BaseMatrix& source)
+template <typename T>
+BaseMatrix<T>::BaseMatrix(const BaseMatrix<T>& source)
 {
     numberOfRows = source.numberOfRows;
     numberOfColums = source.numberOfColums;
     if (source.matrix) {
         this -> allocateMemory();
         for (int indexOflines = 0; indexOflines < numberOfRows; ++indexOflines) {
-            std::memcpy(matrix[indexOflines], source.matrix[indexOflines], (sizeof(int) * numberOfColums));
+            std::memcpy(matrix[indexOflines], source.matrix[indexOflines], (sizeof(T) * numberOfColums));
         }
     }
     else
         matrix = nullptr;
 }
-
-BaseMatrix& BaseMatrix::operator = (const BaseMatrix& source)
+template <typename T>
+BaseMatrix<T>& BaseMatrix<T>::operator = (const BaseMatrix<T>& source)
 {
     if (this == &source) {
         return *this;
@@ -55,7 +59,7 @@ BaseMatrix& BaseMatrix::operator = (const BaseMatrix& source)
     if (source.matrix) {
         this -> allocateMemory();
         for (int indexOflines = 0; indexOflines < numberOfRows; ++indexOflines) {
-            std::memcpy(matrix[indexOflines], source.matrix[indexOflines], (sizeof(int) * numberOfColums));
+            std::memcpy(matrix[indexOflines], source.matrix[indexOflines], (sizeof(T) * numberOfColums));
         } 
     }
     else
@@ -63,8 +67,8 @@ BaseMatrix& BaseMatrix::operator = (const BaseMatrix& source)
 
     return *this;
 }
-
-BaseMatrix::~BaseMatrix() {
+template <typename T>
+BaseMatrix<T>::~BaseMatrix() {
     if (matrix != nullptr) {
         for (int index = 0; index < numberOfRows; ++index) {
             delete[] matrix[index];
@@ -72,39 +76,39 @@ BaseMatrix::~BaseMatrix() {
         delete[] matrix;
     }
 }
+template <typename T>
+T scalarMultiplication(const BaseMatrix<T>& firstMatrix, const BaseMatrix<T>& secondMatrix, int tempMatrColum, int tempMatrRow){
 
-int scalarMultiplication(const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix, int tempMatrColum, int tempMatrRow){
-
-    int temporaryRezult = 0;
+    T temporaryRezult = 0;
     for (int lineAndColum = 0; lineAndColum < firstMatrix.numberOfColums; ++lineAndColum) {
         temporaryRezult += (firstMatrix.getElement(tempMatrRow, lineAndColum) * secondMatrix.getElement(lineAndColum, tempMatrColum));
     }
 
     return temporaryRezult;
 }
-
-BaseMatrix operator * (const BaseMatrix& firstMatrix, const BaseMatrix& secondMatrix) {
+template <typename T>
+BaseMatrix<T> BaseMatrix<T>::operator * (const BaseMatrix<T>& secondMatrix) const{
     
-    if ((firstMatrix.numberOfRows != secondMatrix.numberOfColums) 
-        && (firstMatrix.numberOfColums != secondMatrix.numberOfRows)) {
+    if ((this -> numberOfRows != secondMatrix.numberOfColums) 
+        && (this-> numberOfColums != secondMatrix.numberOfRows)) {
         throw std::invalid_argument("wrong size of matrices");
     }
 
-    BaseMatrix temporaryMatrix(firstMatrix.numberOfRows, secondMatrix.numberOfColums);
+    BaseMatrix<T> temporaryMatrix(this-> numberOfRows, secondMatrix.numberOfColums);
     temporaryMatrix.allocateMemory(); // в динамическое выделение
 
     for (int tempMatrRow = 0; tempMatrRow < temporaryMatrix.numberOfColums; ++tempMatrRow) {
         for (int tempMatrColum = 0; tempMatrColum < temporaryMatrix.numberOfRows; ++tempMatrColum) {
-            temporaryMatrix.matrix[tempMatrRow][tempMatrColum] = scalarMultiplication(firstMatrix, secondMatrix, tempMatrColum, tempMatrRow);
+            temporaryMatrix.matrix[tempMatrRow][tempMatrColum] = scalarMultiplication(*this, secondMatrix, tempMatrColum, tempMatrRow);
         }
     }
     return temporaryMatrix;
 }
 
-
-std::string BaseMatrix::matrixToString() {
+template <typename T>
+std::string BaseMatrix<T>::matrixToString() {
     std::string matrixInString;
-    matrixInString.reserve(((sizeof(int) * numberOfRows) + numberOfRows + 1) * numberOfColums);
+    matrixInString.reserve(((sizeof(T) * numberOfRows) + numberOfRows + 1) * numberOfColums);
 
     for (int indexOflines = 0; indexOflines < numberOfRows; ++indexOflines) {
         for (int indexOfcolums = 0; indexOfcolums < numberOfColums; ++indexOfcolums) {
@@ -116,26 +120,29 @@ std::string BaseMatrix::matrixToString() {
     
     return matrixInString;
 }
-
-int BaseMatrix::getElement(int row, int colum) const {
-    if (((row <= 0) || (row >= numberOfRows)) || ((colum <= 0) || (colum >= numberOfColums))) {
+template <typename T>
+T BaseMatrix<T>::getElement(int row, int colum) const {
+    if (((row < 0) || (row >= numberOfRows)) || ((colum < 0) || (colum >= numberOfColums))) {
         throw std::out_of_range("out of range in getElement");
     }
     
     return matrix[row][colum];
 }
-
-void BaseMatrix::allocateMemory() {
-    matrix = new int* [numberOfRows];
+template <typename T>
+void BaseMatrix<T>::allocateMemory() {
+    matrix = new T* [numberOfRows];
     for (int index = 0; index < numberOfRows; ++index) {
-        matrix[index] = new int[numberOfColums];
+        matrix[index] = new T[numberOfColums];
     }
 }
-
-int BaseMatrix::getNumberOfRows() const {
+template <typename T>
+int BaseMatrix<T>::getNumberOfRows() const {
     return numberOfRows;
 }
-
-int BaseMatrix::getNumberOfColums() const {
+template <typename T>
+int BaseMatrix<T>::getNumberOfColums() const {
     return numberOfColums;
 }
+
+template class BaseMatrix<int>; 
+template class BaseMatrix<double>;

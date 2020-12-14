@@ -9,14 +9,14 @@ int main() {
 	int forDiagonalMatrix[4]{ 1, 2, 3, 4 };
 	try
 	{
-		BaseMatrix firstBaseMatr(4, 7, fillingArray, 28);
+		BaseMatrix<int> firstBaseMatr(4, 7, fillingArray, 28);
 		//objOfBaseMatr.out();
 		cout << firstBaseMatr.matrixToString() << "\n";
-		BaseMatrix secondBaseMatr(7, 4, forNullMatrix, 28);
-		DiagonalMatrix diagMatr(7, 4, forDiagonalMatrix, 4);
+		BaseMatrix<int> secondBaseMatr(7, 4, forNullMatrix, 28);
+		DiagonalMatrix<int> diagMatr(7, 4, forDiagonalMatrix, 4);
 		cout << diagMatr.matrixToString() << "\n";
-		BaseMatrix result = (firstBaseMatr * diagMatr); //нельзя 
-		cout << result.matrixToString() << "\n";
+		cout << (diagMatr * firstBaseMatr).matrixToString(); //нельзя 
+		//cout << result.matrixToString() << "\n";
 		
 
 	}
