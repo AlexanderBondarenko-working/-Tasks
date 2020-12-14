@@ -1,34 +1,41 @@
 #include "diagonalmatrix.h"
 
 template <typename T>
-DiagonalMatrix<T>::DiagonalMatrix() : BaseMatrix<T>::BaseMatrix(), diagonalMatrix(nullptr) {}
+DiagonalMatrix<T>::DiagonalMatrix() : BaseMatrix<T>::BaseMatrix(){} //?????
 
 template <typename T>
-DiagonalMatrix<T>::DiagonalMatrix(int numberOflines, int numberOfColums) 
-    : BaseMatrix<T>::BaseMatrix(numberOflines, numberOfColums), diagonalMatrix(nullptr) {}
-
-template <typename T>
-DiagonalMatrix<T>::DiagonalMatrix(int numberOflines, int numberOfColums, const T*
-	fillingArray, int sizeOfarray) : BaseMatrix<T>::BaseMatrix(numberOflines, numberOfColums)
+DiagonalMatrix<T>::DiagonalMatrix(int numberOfRows, int numberOfcolumns)
 {
-	if (numberOfColums != sizeOfarray) {
-		throw std::invalid_argument("invalid array length");
-	}
-
-	diagonalMatrix = new T[this -> getNumberOfColums()];
-
-	std::memcpy(diagonalMatrix, fillingArray, (sizeof(T) * numberOfColums));
+	this->numberOfRows = numberOfRows;
+	this->numberOfcolumns = numberOfcolumns;
+	allocateMemory();
 }
 
 template <typename T>
-DiagonalMatrix<T>::DiagonalMatrix(const DiagonalMatrix<T>& source) : BaseMatrix<T>::BaseMatrix(source)
+DiagonalMatrix<T>::DiagonalMatrix(int numberOfRows, int numberOfcolumns, const T*
+	fillingArray, int sizeOfarray)
 {
-	if (source.diagonalMatrix) {
-		diagonalMatrix = new T[source.getNumberOfColums()];
-		std::memcpy(diagonalMatrix, source.diagonalMatrix, (sizeof(T) * this -> getNumberOfColums()));
+	if (numberOfcolumns != sizeOfarray) {
+		throw std::invalid_argument("invalid array length");
+	}
+
+	this->numberOfRows = numberOfRows;
+	this->numberOfcolumns = numberOfcolumns;
+	allocateMemory();
+	std::memcpy(this->matrix[0], fillingArray, (sizeof(T) * numberOfcolumns));
+}
+
+template <typename T>
+DiagonalMatrix<T>::DiagonalMatrix(const DiagonalMatrix<T>& source)
+{
+	if (source.matrix) {
+		this->numberOfRows = source.numberOfRows;
+		this->numberOfcolumns = source.numberOfcolumns;
+		this->allocateMemory();
+		std::memcpy(this->matrix[0], source.matrix[0], (sizeof(T) * this->numberOfcolumns));
 	}
     else
-		diagonalMatrix = nullptr;
+		this->matrix = nullptr;
 }
 
 template <typename T>
@@ -39,18 +46,14 @@ DiagonalMatrix<T>& DiagonalMatrix<T>::operator = (const DiagonalMatrix<T>& sourc
 		return *this;
 	}
 
-	if (diagonalMatrix != nullptr) {
-		delete[] diagonalMatrix;
-	}
-
-	*this = source;
-
-    if (source.diagonalMatrix) {
-		diagonalMatrix = new T[this -> getNumberOfColums()];
-		std::memcpy(diagonalMatrix, source.diagonalMatrix, (sizeof(T) * this -> getNumberOfColums()));
+    if (source.matrix) {
+		delete[] this->matrix[0];
+		delete[] this->matrix;
+		this->allocateMemory();
+		std::memcpy(this->matrix[0], source.matrix[0], (sizeof(T) * this->numberOfcolumns));
 	}
 	else {
-		diagonalMatrix = nullptr;
+		this->matrix = nullptr;
 	}
 
 	return *this;
@@ -59,24 +62,20 @@ DiagonalMatrix<T>& DiagonalMatrix<T>::operator = (const DiagonalMatrix<T>& sourc
 template <typename T>
 DiagonalMatrix<T>::~DiagonalMatrix()
 {
-	delete[] diagonalMatrix;
+	delete[] this->matrix[0];
+	delete[] this->matrix;
+	this->matrix = nullptr;
 }
 
 template <typename T>
 std::string DiagonalMatrix<T>::matrixToString() {
 	std::string matrixInString;
-	matrixInString.reserve(((sizeof(T) * (this->getNumberOfRows())) + (this->getNumberOfRows()) + 1) * (this->getNumberOfColums()));
+	matrixInString.reserve(((sizeof(T) * (this->getNumberOfRows())) + (this->getNumberOfRows()) + 1) * (this->getNumberOfcolumns()));
 
-	for (int indexOflines = 0; indexOflines < this->getNumberOfRows(); ++indexOflines) {
-		for (int indexOfcolums = 0; indexOfcolums < this->getNumberOfColums(); ++indexOfcolums) {
-			if (indexOflines == indexOfcolums) {
-				matrixInString.append(std::to_string(diagonalMatrix[indexOfcolums]));
+	for (int indexOfRows = 0; indexOfRows < this->getNumberOfRows(); ++indexOfRows) {
+		for (int indexOfcolumns = 0; indexOfcolumns < this->getNumberOfcolumns(); ++indexOfcolumns) {
+				matrixInString.append(std::to_string(this->getElement(indexOfRows, indexOfcolumns)));
 				matrixInString.append(" ");
-			}
-			else {
-				matrixInString.append("0");
-				matrixInString.append(" ");
-			}
 		}
 		matrixInString.append("\n");
 	}
@@ -85,15 +84,30 @@ std::string DiagonalMatrix<T>::matrixToString() {
 }
 
 template <typename T>
-T DiagonalMatrix<T>::getElement(int row, int colum) const {
-	if (((row < 0) || (row >= this -> getNumberOfRows()) || ((colum < 0) || (colum >= this -> getNumberOfColums())))) {
+T DiagonalMatrix<T>::getElement(int row, int column) const {
+	if (((row < 0) || (row >= this -> getNumberOfRows()) || ((column < 0) || (column >= this -> getNumberOfcolumns())))) {
 		throw std::out_of_range("out of range in getElement");
 	}
-	if (row == colum) {
-		return diagonalMatrix[colum];
+	if (row == column) {
+		return this->matrix[0][column];
 	}
 
 	return 0;
+}
+
+template <typename T>
+void DiagonalMatrix<T>::allocateMemory() {
+	this->matrix = new T* [1];
+	this->matrix[0] = new T[this->numberOfcolumns]{ 0 };
+}
+
+template <typename T>
+void DiagonalMatrix<T>::setElement(T element, int row, int column) {
+    if (((row < 0) || (row >= this->numberOfRows)) || ((column < 0) || (column >= this->numberOfcolumns)) || (row == column)) {
+        throw std::out_of_range("out of range in getElement");
+    }
+
+    this->matrix[0][column] = element;
 }
 
 template class DiagonalMatrix<int>;

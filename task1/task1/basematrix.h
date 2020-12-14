@@ -7,28 +7,30 @@
 
 template <class T>
 class BaseMatrix {
-	int numberOfRows; 
-	int numberOfColums;
-	T** matrix;
 	void allocateMemory();
 protected:
+	int numberOfRows;
+	int numberOfcolumns;
+	T** matrix;
 	BaseMatrix();
-	BaseMatrix(int numberOfRows, int numberOfColums);
 public:
-	BaseMatrix(int numberOfRows, int numberOfColums, const T*
+	BaseMatrix(int numberOfRows, int numberOfcolumns);
+	BaseMatrix(int numberOfRows, int numberOfcolumns, const T*
 		       fillingArray, int sizeOfarray);
 	BaseMatrix(const BaseMatrix<T>& source);
-	virtual T getElement(int row, int colum) const;
-	BaseMatrix<T>& operator = (const BaseMatrix<T>& source);
 	virtual ~BaseMatrix();
 
+	BaseMatrix<T>& operator = (const BaseMatrix<T>& source);
 	BaseMatrix<T> operator *(const BaseMatrix<T>& secondMatrix) const;
-	template <class T>
-	friend T scalarMultiplication(const BaseMatrix<T>& firstMatrix, const BaseMatrix<T>& secondMatrix, int resIndexColum, int resIndexline);
+	T scalarMultiplication(const BaseMatrix<T>& secondMatrix, int resIndexcolumn, int resIndexline) const;
 
 	virtual std::string matrixToString();
+	virtual T getElement(int row, int column) const;
+
+
 	int getNumberOfRows() const;
-	int getNumberOfColums() const;
+	int getNumberOfcolumns() const;
+	virtual void setElement(T element, int row, int column);
 };
 
 

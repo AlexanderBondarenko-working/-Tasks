@@ -4,18 +4,20 @@
 
 template <class T>
 class DiagonalMatrix : public BaseMatrix<T> {
-	T* diagonalMatrix;
+	void allocateMemory();
 protected:
 	DiagonalMatrix();
-	DiagonalMatrix(int numberOflines, int numberOfColums);
 public:
-	DiagonalMatrix(int numberOflines, int numberOfColums, const T*
+	DiagonalMatrix(int numberOfRows, int numberOfcolumns);
+	DiagonalMatrix(int numberOfRows, int numberOfcolumns, const T*
 		fillingArray, int sizeOfarray);
 	DiagonalMatrix(const DiagonalMatrix<T>& source);
 	DiagonalMatrix<T>& operator = (const DiagonalMatrix<T>& source);
 	~DiagonalMatrix();
-	virtual T getElement(int row, int colum) const;
+	virtual T getElement(int row, int column) const;
 	virtual std::string matrixToString();
+	virtual void setElement(T element, int row, int column);
+	//перегрузка *
 };
 
 #endif  // TASK1_DIAGONALMATRIX_H_ 

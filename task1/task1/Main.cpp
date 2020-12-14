@@ -9,15 +9,15 @@ int main() {
 	int forDiagonalMatrix[4]{ 1, 2, 3, 4 };
 	try
 	{
-		BaseMatrix<int> firstBaseMatr(4, 7, fillingArray, 28);
+		//BaseMatrix<int> firstBaseMatr(4, 7, fillingArray, 28);
 		//objOfBaseMatr.out();
-		cout << firstBaseMatr.matrixToString() << "\n";
-		BaseMatrix<int> secondBaseMatr(7, 4, forNullMatrix, 28);
-		DiagonalMatrix<int> diagMatr(7, 4, forDiagonalMatrix, 4);
-		cout << diagMatr.matrixToString() << "\n";
-		cout << (diagMatr * firstBaseMatr).matrixToString(); //нельзя 
+		//cout << firstBaseMatr.matrixToString() << "\n";
+		//BaseMatrix<int> secondBaseMatr(7, 4, forNullMatrix, 28);
+		DiagonalMatrix<int> diagMatr(7, 4, forDiagonalMatrix, 1);
+		//cout << diagMatr.matrixToString() << "\n";
+		//cout << (firstBaseMatr * diagMatr).matrixToString() << "\n";
 		//cout << result.matrixToString() << "\n";
-		
+		//cout << DiagonalMatrix<int>(7, 4).matrixToString();
 
 	}
 	catch (std::exception& exception)
