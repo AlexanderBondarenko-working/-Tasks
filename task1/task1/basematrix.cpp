@@ -2,29 +2,29 @@
  #include <cstring>
 
  template <typename T>
- BaseMatrix<T>::BaseMatrix() : numberOfRows(0), numberOfcolumns(0), matrix(nullptr) {}
+ BaseMatrix<T>::BaseMatrix() : numberOfRows(0), numberOfColumns(0), matrix(nullptr) {}
 
  template <typename T>
- BaseMatrix<T>::BaseMatrix(int numberOfRows, int numberOfcolumns)
-    : numberOfRows(numberOfRows), numberOfcolumns(numberOfcolumns)
+ BaseMatrix<T>::BaseMatrix(int numberOfRows, int numberOfColumns)
+    : numberOfRows(numberOfRows), numberOfColumns(numberOfColumns)
  {
      allocateMemory();
  }
 
 template <typename T>
-BaseMatrix<T>::BaseMatrix(int numberOfRows, int numberOfcolumns,
+BaseMatrix<T>::BaseMatrix(int numberOfRows, int numberOfColumns,
     const T* fillingArray, int sizeOfarray)
-    : numberOfRows(numberOfRows), numberOfcolumns(numberOfcolumns)
+    : numberOfRows(numberOfRows), numberOfColumns(numberOfColumns)
 {
-    if ((numberOfRows * numberOfcolumns) != sizeOfarray) {
+    if ((numberOfRows * numberOfColumns) != sizeOfarray) {
         throw std::invalid_argument("invalid array length");
     }
 
     this -> allocateMemory();
 
     for (int indexOfRows = 0; indexOfRows < numberOfRows; ++indexOfRows) {
-        for (int indexOfcolumns = 0; indexOfcolumns < numberOfcolumns; ++indexOfcolumns) {
-            matrix[indexOfRows][indexOfcolumns] = fillingArray[((numberOfcolumns * indexOfRows) + indexOfcolumns)];
+        for (int indexOfcolumns = 0; indexOfcolumns < numberOfColumns; ++indexOfcolumns) {
+            matrix[indexOfRows][indexOfcolumns] = fillingArray[((numberOfColumns * indexOfRows) + indexOfcolumns)];
         }
     }
 }
@@ -32,11 +32,11 @@ template <typename T>
 BaseMatrix<T>::BaseMatrix(const BaseMatrix<T>& source)
 {
     numberOfRows = source.numberOfRows;
-    numberOfcolumns = source.numberOfcolumns;
+    numberOfColumns = source.numberOfColumns;
     if (source.matrix) {
         this -> allocateMemory();
         for (int indexOfRows = 0; indexOfRows < numberOfRows; ++indexOfRows) {
-            std::memcpy(matrix[indexOfRows], source.matrix[indexOfRows], (sizeof(T) * numberOfcolumns));
+            std::memcpy(matrix[indexOfRows], source.matrix[indexOfRows], (sizeof(T) * numberOfColumns));
         }
     }
     else
@@ -57,12 +57,12 @@ BaseMatrix<T>& BaseMatrix<T>::operator = (const BaseMatrix<T>& source)
     delete[] matrix;
 
     numberOfRows = source.numberOfRows;
-    numberOfcolumns = source.numberOfcolumns;
+    numberOfColumns = source.numberOfColumns;
 
     if (source.matrix) {
         this -> allocateMemory();
         for (int indexOfRows = 0; indexOfRows < numberOfRows; ++indexOfRows) {
-            std::memcpy(matrix[indexOfRows], source.matrix[indexOfRows], (sizeof(T) * numberOfcolumns));
+            std::memcpy(matrix[indexOfRows], source.matrix[indexOfRows], (sizeof(T) * numberOfColumns));
         } 
     }
     else
@@ -79,43 +79,15 @@ BaseMatrix<T>::~BaseMatrix() {
         delete[] matrix;
     }
 }
-template <typename T>
-T BaseMatrix<T>::scalarMultiplication(const BaseMatrix<T>& secondMatrix, int tempMatrcolumn, int tempMatrRow) const{
-
-    T temporaryRezult = 0;
-    for (int rowAndcolumn = 0; rowAndcolumn < this->numberOfcolumns; ++rowAndcolumn) {
-        temporaryRezult += (this->getElement(tempMatrRow, rowAndcolumn) * secondMatrix.getElement(rowAndcolumn, tempMatrcolumn));
-    }
-
-    return temporaryRezult;
-}
-template <typename T>
-BaseMatrix<T> BaseMatrix<T>::operator * (const BaseMatrix<T>& secondMatrix) const{
-    
-    if ((this -> numberOfRows != secondMatrix.numberOfcolumns) 
-        && (this-> numberOfcolumns != secondMatrix.numberOfRows)) {
-        throw std::invalid_argument("wrong size of matrices");
-    }
-
-    BaseMatrix<T> temporaryMatrix(this-> numberOfRows, secondMatrix.numberOfcolumns);
-    temporaryMatrix.allocateMemory(); // в динамическое выделение
-
-    for (int tempMatrRow = 0; tempMatrRow < temporaryMatrix.numberOfcolumns; ++tempMatrRow) {
-        for (int tempMatrcolumn = 0; tempMatrcolumn < temporaryMatrix.numberOfRows; ++tempMatrcolumn) {
-            temporaryMatrix.matrix[tempMatrRow][tempMatrcolumn] = scalarMultiplication(secondMatrix, tempMatrcolumn, tempMatrRow);
-        }
-    }
-    return temporaryMatrix;
-}
 
 template <typename T>
 std::string BaseMatrix<T>::matrixToString() {
     std::string matrixInString;
-    matrixInString.reserve(((sizeof(T) * numberOfRows) + numberOfRows + 1) * numberOfcolumns);
+    matrixInString.reserve(((sizeof(T) * numberOfRows) + numberOfRows + 1) * numberOfColumns);
 
     for (int indexOfRows = 0; indexOfRows < numberOfRows; ++indexOfRows) {
-        for (int indexOfcolumns = 0; indexOfcolumns < numberOfcolumns; ++indexOfcolumns) {
-            matrixInString.append(std::to_string(matrix[indexOfRows][indexOfcolumns]));
+        for (int indexOfColumns = 0; indexOfColumns < numberOfColumns; ++indexOfColumns) {
+            matrixInString.append(std::to_string(matrix[indexOfRows][indexOfColumns]));
             matrixInString.append(" ");
         }
         matrixInString.append("\n");
@@ -125,7 +97,7 @@ std::string BaseMatrix<T>::matrixToString() {
 }
 template <typename T>
 T BaseMatrix<T>::getElement(int row, int column) const {
-    if (((row < 0) || (row >= numberOfRows)) || ((column < 0) || (column >= numberOfcolumns))) {
+    if (((row < 0) || (row >= numberOfRows)) || ((column < 0) || (column >= numberOfColumns))) {
         throw std::out_of_range("out of range in getElement");
     }
     
@@ -135,7 +107,7 @@ template <typename T>
 void BaseMatrix<T>::allocateMemory() {
     matrix = new T* [numberOfRows];
     for (int index = 0; index < numberOfRows; ++index) {
-        matrix[index] = new T[numberOfcolumns]{ 0 };
+        matrix[index] = new T[numberOfColumns]{ 0 };
     }
 }
 template <typename T>
@@ -143,17 +115,49 @@ int BaseMatrix<T>::getNumberOfRows() const {
     return numberOfRows;
 }
 template <typename T>
-int BaseMatrix<T>::getNumberOfcolumns() const {
-    return numberOfcolumns;
+int BaseMatrix<T>::getNumberOfColumns() const {
+    return numberOfColumns;
 }
 
 template <typename T>
 void BaseMatrix<T>::setElement(T element, int row, int column) {
-    if (((row < 0) || (row >= numberOfRows)) || ((column < 0) || (column >= numberOfcolumns))) {
+    if (((row < 0) || (row >= numberOfRows)) || ((column < 0) || (column >= numberOfColumns))) {
         throw std::out_of_range("out of range in getElement");
     }
 
     matrix[row][column] = element;
+}
+
+template <typename T>
+BaseMatrix<T>* BaseMatrix<T>::operator * (const BaseMatrix<T>& secondMatrix) const {
+    if ((this->numberOfRows != secondMatrix.numberOfColumns)
+        && (this->numberOfColumns != secondMatrix.numberOfRows)) {
+        throw std::invalid_argument("wrong size of matrices");
+    }
+
+    return this->matrixMultiplication(*this, secondMatrix);
+}
+
+template <typename T>
+BaseMatrix<T>* BaseMatrix<T>::matrixMultiplication(const BaseMatrix<T>& firstMatrix, const BaseMatrix<T>& secondMatrix) const{
+    BaseMatrix<T> * temporaryMatrix = new BaseMatrix<T>(this->getNumberOfRows(), secondMatrix.getNumberOfColumns());
+
+    for (int tempMatrRow = 0; tempMatrRow < temporaryMatrix->getNumberOfColumns(); ++tempMatrRow) {
+        for (int tempMatrColumn = 0; tempMatrColumn < temporaryMatrix->numberOfRows; ++tempMatrColumn) {
+            temporaryMatrix->setElement(secondMatrix.scalarMultiplication(firstMatrix, secondMatrix, tempMatrColumn, tempMatrRow), tempMatrRow, tempMatrColumn);
+        }
+    }
+    return temporaryMatrix;
+}
+
+template <typename T>
+T BaseMatrix<T>::scalarMultiplication(const BaseMatrix<T>& firstMatrix, const BaseMatrix<T>& secondMatrix, int tempMatrColumn, int tempMatrRow) const {
+    T temporaryRezult = 0;
+    for (int rowAndColumn = 0; rowAndColumn < firstMatrix.numberOfColumns; ++rowAndColumn) {
+        temporaryRezult += (firstMatrix.getElement(tempMatrRow, rowAndColumn) * secondMatrix.getElement(rowAndColumn, tempMatrColumn));
+    }
+
+    return temporaryRezult;
 }
 
 template class BaseMatrix<double>;

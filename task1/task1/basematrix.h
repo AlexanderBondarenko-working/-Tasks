@@ -10,26 +10,26 @@ class BaseMatrix {
 	void allocateMemory();
 protected:
 	int numberOfRows;
-	int numberOfcolumns;
+	int numberOfColumns;
 	T** matrix;
 	BaseMatrix();
 public:
-	BaseMatrix(int numberOfRows, int numberOfcolumns);
-	BaseMatrix(int numberOfRows, int numberOfcolumns, const T*
+	BaseMatrix(int numberOfRows, int numberOfColumns);
+	BaseMatrix(int numberOfRows, int numberOfColumns, const T*
 		       fillingArray, int sizeOfarray);
 	BaseMatrix(const BaseMatrix<T>& source);
 	virtual ~BaseMatrix();
 
 	BaseMatrix<T>& operator = (const BaseMatrix<T>& source);
-	BaseMatrix<T> operator *(const BaseMatrix<T>& secondMatrix) const;
-	T scalarMultiplication(const BaseMatrix<T>& secondMatrix, int resIndexcolumn, int resIndexline) const;
+	virtual BaseMatrix<T>* operator *(const BaseMatrix<T>& secondMatrix) const;
+	virtual T scalarMultiplication(const BaseMatrix<T>& firstMatrix,const BaseMatrix<T>& secondMatrix, int resIndexColumn, int resIndexRow) const;
 
 	virtual std::string matrixToString();
 	virtual T getElement(int row, int column) const;
-
+	virtual BaseMatrix<T>* matrixMultiplication(const BaseMatrix<T>& firstMatrix, const BaseMatrix<T>& secondMatrix) const;
 
 	int getNumberOfRows() const;
-	int getNumberOfcolumns() const;
+	int getNumberOfColumns() const;
 	virtual void setElement(T element, int row, int column);
 };
 

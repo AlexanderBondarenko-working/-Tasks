@@ -8,8 +8,8 @@ class DiagonalMatrix : public BaseMatrix<T> {
 protected:
 	DiagonalMatrix();
 public:
-	DiagonalMatrix(int numberOfRows, int numberOfcolumns);
-	DiagonalMatrix(int numberOfRows, int numberOfcolumns, const T*
+	DiagonalMatrix(int numberOfRows, int numberOfColumns);
+	DiagonalMatrix(int numberOfRows, int numberOfColumns, const T*
 		fillingArray, int sizeOfarray);
 	DiagonalMatrix(const DiagonalMatrix<T>& source);
 	DiagonalMatrix<T>& operator = (const DiagonalMatrix<T>& source);
@@ -17,7 +17,10 @@ public:
 	virtual T getElement(int row, int column) const;
 	virtual std::string matrixToString();
 	virtual void setElement(T element, int row, int column);
-	//перегрузка *
+
+	virtual BaseMatrix<T>* operator *(const BaseMatrix<T>& secondMatrix) const;
+	virtual BaseMatrix<T>* matrixMultiplication(const BaseMatrix<T>& firstMatrix, const BaseMatrix<T>& secondMatrix) const;
+	T scalarMultiplication(const BaseMatrix<T>& firstMatrix, const BaseMatrix<T>& secondMatrix, int resIndexColumn, int resIndexRow) const;
 };
 
 #endif  // TASK1_DIAGONALMATRIX_H_ 
