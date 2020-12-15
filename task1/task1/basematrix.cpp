@@ -19,6 +19,9 @@ BaseMatrix<T>::BaseMatrix(int numberOfRows, int numberOfColumns,
     if ((numberOfRows * numberOfColumns) != sizeOfarray) {
         throw std::invalid_argument("invalid array length");
     }
+    if (!fillingArray) {
+        throw std::invalid_argument("invalid array");
+    }
 
     this -> allocateMemory();
 
@@ -29,8 +32,10 @@ BaseMatrix<T>::BaseMatrix(int numberOfRows, int numberOfColumns,
     }
 }
 template <typename T>
-BaseMatrix<T>::BaseMatrix(const BaseMatrix<T>& source) //проверка на null
+BaseMatrix<T>::BaseMatrix(const BaseMatrix<T>& source)
 {
+    sourceCheck(source);
+
     numberOfRows = source.numberOfRows;
     numberOfColumns = source.numberOfColumns;
     if (source.matrix) {
@@ -45,6 +50,8 @@ BaseMatrix<T>::BaseMatrix(const BaseMatrix<T>& source) //проверка на n
 template <typename T>
 BaseMatrix<T>& BaseMatrix<T>::operator = (const BaseMatrix<T>& source)
 {
+    sourceCheck(source);
+
     if (this == &source) {
         return *this;
     }
@@ -125,6 +132,7 @@ BaseMatrix<T>* BaseMatrix<T>::operator * (const BaseMatrix<T>& secondMatrix) con
 
 template <typename T>
 BaseMatrix<T>* BaseMatrix<T>::multiplication(const BaseMatrix<T>& secondMatrix) const{
+    sourceCheck(secondMatrix);
     BaseMatrix<T> * temporaryMatrix = new BaseMatrix<T>(this->getNumberOfRows(), secondMatrix.getNumberOfColumns());
     for (int tempMatrRow = 0; tempMatrRow < temporaryMatrix->getNumberOfColumns(); ++tempMatrRow) {
         for (int tempMatrColumn = 0; tempMatrColumn < temporaryMatrix->numberOfRows; ++tempMatrColumn) {
@@ -157,6 +165,13 @@ template <typename T>
 void BaseMatrix<T>::rangeCheck(int row, int column, const char* message) const {
     if (((row < 0) || (row >= numberOfRows)) || ((column < 0) || (column >= numberOfColumns))) {
         throw std::out_of_range(message);
+    }
+}
+
+template <typename T>
+void BaseMatrix<T>::sourceCheck(const BaseMatrix<T>& source) const {
+    if (&source == NULL) {
+        throw std::invalid_argument("invalid source");
     }
 }
 

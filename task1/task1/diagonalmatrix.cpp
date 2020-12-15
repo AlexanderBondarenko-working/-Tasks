@@ -6,7 +6,7 @@ DiagonalMatrix<T>::DiagonalMatrix() : BaseMatrix<T>::BaseMatrix() {}
 template <typename T>
 DiagonalMatrix<T>::DiagonalMatrix(int numberOfRows, int numberOfColumns)
 {
-	init(numberOfRows, numberOfColumns);
+	this->init(numberOfRows, numberOfColumns);
 	allocateMemory();
 }
 
@@ -14,9 +14,13 @@ template <typename T>
 DiagonalMatrix<T>::DiagonalMatrix(int numberOfRows, int numberOfColumns, const T*
 	fillingArray, int sizeOfarray)
 {
-	init(numberOfRows, numberOfColumns);
+	this->init(numberOfRows, numberOfColumns);
 	if (sizeOfDiagonal != sizeOfarray) {
 		throw std::invalid_argument("invalid array length");
+	}
+
+	if (!fillingArray) {
+		throw std::invalid_argument("invalid array");
 	}
 
 	allocateMemory();
@@ -24,10 +28,12 @@ DiagonalMatrix<T>::DiagonalMatrix(int numberOfRows, int numberOfColumns, const T
 }
 
 template <typename T>
-DiagonalMatrix<T>::DiagonalMatrix(const DiagonalMatrix<T>& source)//???????? ?? NULL
+DiagonalMatrix<T>::DiagonalMatrix(const DiagonalMatrix<T>& source)
 {
+	this->sourceCheck(source);
+
 	if (source.matrix) {
-		init(source.numberOfRows, source.numberOfColumns);
+		this->init(source.numberOfRows, source.numberOfColumns);
 		this->allocateMemory();
 		std::memcpy(this->matrix[0], source.matrix[0], (sizeof(T) * this->sizeOfDiagonal));
 	}
@@ -38,6 +44,7 @@ DiagonalMatrix<T>::DiagonalMatrix(const DiagonalMatrix<T>& source)//???????? ?? 
 template <typename T>
 DiagonalMatrix<T>& DiagonalMatrix<T>::operator = (const DiagonalMatrix<T>& source)
 {
+	this->sourceCheck(source);
 
 	if (this == &source) {
 		return *this;
@@ -96,6 +103,7 @@ BaseMatrix<T>* DiagonalMatrix<T>::operator * (const BaseMatrix<T>& secondMatrix)
 
 template <typename T>
 BaseMatrix<T>* DiagonalMatrix<T>::multiplication(const BaseMatrix<T>& secondMatrix) const { 
+	this->sourceCheck(secondMatrix);
 	BaseMatrix<T>* temporaryMatrix = new BaseMatrix<T>((this->getNumberOfRows()), secondMatrix.getNumberOfColumns());
 	for (int tempMatrRow = 0; tempMatrRow < this->getSizeOfDiagonal(); ++tempMatrRow) {
 		for (int tempMatrColumn = 0; tempMatrColumn < secondMatrix.getNumberOfColumns(); ++tempMatrColumn) {

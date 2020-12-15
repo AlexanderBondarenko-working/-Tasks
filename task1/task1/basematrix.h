@@ -16,6 +16,7 @@ protected:
 	BaseMatrix();
 	virtual T scalarMultiplication(const BaseMatrix<T>& firstMatrix, const BaseMatrix<T>& secondMatrix, int resIndexColumn, int resIndexRow) const;
 	void rangeCheck(int row, int column, const char* message) const;
+	void sourceCheck(const BaseMatrix<T>& source) const;
 public:
 	BaseMatrix(int numberOfRows, int numberOfColumns);
 	BaseMatrix(int numberOfRows, int numberOfColumns, const T*
