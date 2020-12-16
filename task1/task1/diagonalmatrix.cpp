@@ -76,13 +76,13 @@ T DiagonalMatrix<T>::getElement(int row, int column) const {
 		return this->matrix[0][column];
 	}
 
-	return 0;//???? ???? ?????? defoult ???? ??????
+	return T();
 }
 
 template <typename T>
 void DiagonalMatrix<T>::allocateMemory() {
 	this->matrix = new T* [1];
-	this->matrix[0] = new T[(this->numberOfColumns)]{ 0 };
+	this->matrix[0] = new T[(this->numberOfColumns)]{ T() };
 }
 
 template <typename T>
@@ -118,7 +118,7 @@ T DiagonalMatrix<T>::scalarMultiplication(const BaseMatrix<T>& firstMatrix, cons
 	if (tempMatrColumn < std::min(secondMatrix.getNumberOfColumns(), secondMatrix.getNumberOfRows())) {
 		return (firstMatrix.getElement(tempMatrRow, tempMatrColumn)* secondMatrix.getElement(tempMatrColumn, tempMatrColumn));
 	}
-	return 0;//defoult
+	return T();
 }
 
 template <typename T>

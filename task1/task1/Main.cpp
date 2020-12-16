@@ -4,22 +4,22 @@
 using namespace std;
 
 int main() {
-	int fillingArray[28] { 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 1, 2, 3, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 6, 6 };
-	int forSecondMatrix[28]{ 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 1, 2, 3, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 6, 6 };
-	int forDiagonalMatrix[4]{ 1, 2, 3, 4 };
-	int forDiagonalMatrix2[7]{ 1, 2, 3, 4, 5, 6, 7};
+	double fillingArray[28] { 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 1, 2, 3, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 6, 6 };
+	double forSecondMatrix[28]{ 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 1, 2, 3, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 6, 6 };
+	double forDiagonalMatrix[4]{ 1, 2, 3, 4 };
+	double forDiagonalMatrix2[7]{ 1, 2, 3, 4, 5, 6, 7};
 	try
 	{
-		std::unique_ptr<BaseMatrix<int>> firstBaseMatr(new BaseMatrix<int>(4, 7, fillingArray, 28));
-		std::unique_ptr<BaseMatrix<int>> secondBaseMatr(new BaseMatrix<int>(7, 4, forSecondMatrix, 28));
+		std::unique_ptr<BaseMatrix<double>> firstBaseMatr(new BaseMatrix<double>(4, 7, fillingArray, 28));
+		std::unique_ptr<BaseMatrix<double>> secondBaseMatr(new BaseMatrix<double>(7, 4, forSecondMatrix, 28));
 		cout << firstBaseMatr -> matrixToString() << "\n";
 		cout << secondBaseMatr -> matrixToString() << "\n";
 		
-		std::unique_ptr <DiagonalMatrix<int>> firstDiagMatr(new DiagonalMatrix<int>(7, 4, forDiagonalMatrix, 4));
-		std::unique_ptr <DiagonalMatrix<int>> secondDiagMatr(new DiagonalMatrix<int>(4, 7, forDiagonalMatrix2, 4));
+		std::unique_ptr <DiagonalMatrix<double>> firstDiagMatr(new DiagonalMatrix<double>(7, 4, forDiagonalMatrix, 4));
+		std::unique_ptr <DiagonalMatrix<double>> secondDiagMatr(new DiagonalMatrix<double>(4, 7, forDiagonalMatrix2, 4));
 		cout << firstDiagMatr -> matrixToString() << "\n";
 		cout << secondDiagMatr -> matrixToString() << "\n";
-		std::unique_ptr<BaseMatrix<int>> resultBaseMatr ((*secondBaseMatr) * (*secondDiagMatr));
+		std::unique_ptr<BaseMatrix<double>> resultBaseMatr ((*firstBaseMatr) * (*firstDiagMatr));
 
 		cout << resultBaseMatr -> matrixToString() << "\n";
 		

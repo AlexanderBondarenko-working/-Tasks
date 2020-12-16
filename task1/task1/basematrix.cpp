@@ -102,7 +102,7 @@ template <typename T>
 void BaseMatrix<T>::allocateMemory() {
     matrix = new T* [numberOfRows];
     for (int index = 0; index < numberOfRows; ++index) {
-        matrix[index] = new T[numberOfColumns]{ 0 };
+        matrix[index] = new T[numberOfColumns]{ T() };
     }
 }
 template <typename T>
