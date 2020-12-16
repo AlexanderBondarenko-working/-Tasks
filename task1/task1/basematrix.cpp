@@ -56,7 +56,7 @@ BaseMatrix<T>& BaseMatrix<T>::operator = (const BaseMatrix<T>& source)
         return *this;
     }
 
-    deleteMemory();
+    freeMemory();
 
     numberOfRows = source.numberOfRows;
     numberOfColumns = source.numberOfColumns;
@@ -74,16 +74,16 @@ BaseMatrix<T>& BaseMatrix<T>::operator = (const BaseMatrix<T>& source)
 }
 template <typename T>
 BaseMatrix<T>::~BaseMatrix() {
-    deleteMemory();
+    freeMemory();
 }
 
 template <typename T>
 std::string BaseMatrix<T>::matrixToString() { //возврат по умному указателю
     std::string matrixInString;
-    matrixInString.reserve(((sizeof(T) * numberOfRows) + numberOfRows + 1) * numberOfColumns);
+    matrixInString.reserve( ((sizeof(T) * (this->getNumberOfRows() )) + (this->getNumberOfRows() + 1) ) * (this->getNumberOfColumns() ) );
 
-    for (int indexOfRows = 0; indexOfRows < numberOfRows; ++indexOfRows) {
-        for (int indexOfColumns = 0; indexOfColumns < numberOfColumns; ++indexOfColumns) {
+    for (int indexOfRows = 0; indexOfRows < (this->getNumberOfRows() ); ++indexOfRows) {
+        for (int indexOfColumns = 0; indexOfColumns < (this->getNumberOfColumns() ); ++indexOfColumns) {
             matrixInString.append(std::to_string(this->getElement(indexOfRows, indexOfColumns)));
             matrixInString.append(" ");
         }
@@ -152,7 +152,7 @@ T BaseMatrix<T>::scalarMultiplication(const BaseMatrix<T>& firstMatrix, const Ba
 }
 
 template <typename T>
-void BaseMatrix<T>::deleteMemory() {
+void BaseMatrix<T>::freeMemory() {
     if (matrix != nullptr) {
         for (int index = 0; index < numberOfRows; ++index) {
             delete[] matrix[index];
@@ -163,7 +163,7 @@ void BaseMatrix<T>::deleteMemory() {
 
 template <typename T>
 void BaseMatrix<T>::rangeCheck(int row, int column, const char* message) const {
-    if (((row < 0) || (row >= numberOfRows)) || ((column < 0) || (column >= numberOfColumns))) {
+    if (((row < 0) || (row >= this->getNumberOfRows())) || (column < 0) || (column >= this->getNumberOfColumns())) {
         throw std::out_of_range(message);
     }
 }

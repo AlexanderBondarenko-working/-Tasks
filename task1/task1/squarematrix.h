@@ -7,6 +7,8 @@ template <class T>
 class SquareMatrix : public BaseMatrix<T> {
 protected:
 	SquareMatrix();
+	SquareMatrix(int numberOfRows, int numberOfColumns); 
+	SquareMatrix(int numberOfRows, int numberOfColumns, const T* fillingArray, int sizeOfarray);
 public:
 	SquareMatrix(int sizeOfMatrix);
 	SquareMatrix(int sizeOfMatrix, const T*

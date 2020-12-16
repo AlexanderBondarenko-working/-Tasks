@@ -21,22 +21,22 @@
     <ClCompile Include="basematrix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="diagonalmatrix.cpp">
+    <ClCompile Include="squarematrix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="squarematrix.cpp">
+    <ClCompile Include="diagonalmatrix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="basematrix.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="diagonalmatrix.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="basematrix.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="squarematrix.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

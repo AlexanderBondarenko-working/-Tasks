@@ -4,6 +4,13 @@ template <typename T>
 SquareMatrix<T>::SquareMatrix() : BaseMatrix<T>::BaseMatrix() {}
 
 template <typename T>
+SquareMatrix<T>::SquareMatrix(int numberOfRows, int numberOfColumns) : BaseMatrix<T>::BaseMatrix(numberOfRows, numberOfColumns) {};
+
+template <typename T>
+SquareMatrix<T>::SquareMatrix(int numberOfRows, int numberOfColumns, const T* fillingArray, int sizeOfarray) 
+	: BaseMatrix<T>::BaseMatrix(numberOfRows, numberOfColumns, fillingArray, sizeOfarray) {}
+
+template <typename T>
 SquareMatrix<T>::SquareMatrix(int sizeOfMatrix) : BaseMatrix<T>::BaseMatrix(sizeOfMatrix, sizeOfMatrix) {}
 
 template <typename T>
