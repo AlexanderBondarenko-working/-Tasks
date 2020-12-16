@@ -86,7 +86,7 @@ void DiagonalMatrix<T>::allocateMemory() {
 }
 
 template <typename T>
-void DiagonalMatrix<T>::setElement(T element, int row, int column) {
+void DiagonalMatrix<T>::setElement(T element, int row, int column) {//????????
 	this->rangeCheck(row, column, "out of range in setElement");
 
     this->matrix[0][column] = element;
@@ -129,7 +129,8 @@ void DiagonalMatrix<T>::init(int numberOfRows, int numberOfColumns) {
 }
 
 template <typename T>
-void DiagonalMatrix<T>::deleteMemory() {
+void DiagonalMatrix<T>::deleteMemory() {//nullptr?
+
 	delete[] this->matrix[0];
 	delete[] this->matrix;
 }

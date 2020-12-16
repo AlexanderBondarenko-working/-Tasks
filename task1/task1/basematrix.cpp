@@ -78,7 +78,7 @@ BaseMatrix<T>::~BaseMatrix() {
 }
 
 template <typename T>
-std::string BaseMatrix<T>::matrixToString() {
+std::string BaseMatrix<T>::matrixToString() { //возврат по умному указателю
     std::string matrixInString;
     matrixInString.reserve(((sizeof(T) * numberOfRows) + numberOfRows + 1) * numberOfColumns);
 

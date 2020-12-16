@@ -24,12 +24,18 @@
     <ClCompile Include="diagonalmatrix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="squarematrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="basematrix.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="diagonalmatrix.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="squarematrix.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

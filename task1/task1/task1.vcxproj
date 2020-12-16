@@ -142,10 +142,12 @@
     <ClCompile Include="diagonalmatrix.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="basematrix.cpp" />
+    <ClCompile Include="squarematrix.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="basematrix.h" />
     <ClInclude Include="diagonalmatrix.h" />
+    <ClInclude Include="squarematrix.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
