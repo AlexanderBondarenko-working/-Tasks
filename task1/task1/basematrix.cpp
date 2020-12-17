@@ -78,16 +78,17 @@ BaseMatrix<T>::~BaseMatrix() {
 }
 
 template <typename T>
-std::string BaseMatrix<T>::matrixToString() { //возврат по умному указателю
-    std::string matrixInString;
-    matrixInString.reserve( ((sizeof(T) * (this->getNumberOfRows() )) + (this->getNumberOfRows() + 1) ) * (this->getNumberOfColumns() ) );
+std::unique_ptr<std::string> BaseMatrix<T>::matrixToString() { //возврат по умному указателю
+    std::unique_ptr<std::string> matrixInString = std::make_unique<std::string>();
+    //std::string matrixInString;
+    matrixInString->reserve( ((sizeof(T) * (this->getNumberOfRows() )) + (this->getNumberOfRows() + 1) ) * (this->getNumberOfColumns() ) );
 
     for (int indexOfRows = 0; indexOfRows < (this->getNumberOfRows() ); ++indexOfRows) {
         for (int indexOfColumns = 0; indexOfColumns < (this->getNumberOfColumns() ); ++indexOfColumns) {
-            matrixInString.append(std::to_string(this->getElement(indexOfRows, indexOfColumns)));
-            matrixInString.append(" ");
+            matrixInString->append(std::to_string(this->getElement(indexOfRows, indexOfColumns)));
+            matrixInString->append(" ");
         }
-        matrixInString.append("\n");
+        matrixInString->append("\n");
     }
     
     return matrixInString;

@@ -16,8 +16,6 @@ public:
 	~DiagonalMatrix();
 	virtual T getElement(int row, int column) const;
 	virtual void setElement(T element, int row, int column);
-
-	//int getSizeOfDiagonal() const;
 	BaseMatrix<T>* operator *(const BaseMatrix<T>& secondMatrix) const;
 	virtual BaseMatrix<T>* multiplication(const BaseMatrix<T>& secondMatrix) const;
 	virtual int getNumberOfRows() const;

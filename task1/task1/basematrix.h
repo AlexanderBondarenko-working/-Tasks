@@ -26,7 +26,7 @@ public:
 	virtual ~BaseMatrix();
 
 	virtual BaseMatrix<T>* operator *(const BaseMatrix<T>& secondMatrix) const;
-	std::string matrixToString();
+	std::unique_ptr<std::string> matrixToString();
 	virtual T getElement(int row, int column) const;
 	BaseMatrix<T>* multiplication(const BaseMatrix<T>& secondMatrix) const;
 

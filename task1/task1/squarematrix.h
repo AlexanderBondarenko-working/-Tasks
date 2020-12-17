@@ -11,8 +11,7 @@ protected:
 	SquareMatrix(int numberOfRows, int numberOfColumns, const T* fillingArray, int sizeOfarray);
 public:
 	SquareMatrix(int sizeOfMatrix);
-	SquareMatrix(int sizeOfMatrix, const T*
-		fillingArray, int sizeOfarray);
+	SquareMatrix(int sizeOfMatrix, const T* fillingArray, int sizeOfarray);
 	SquareMatrix(const SquareMatrix<T>& source);
 	virtual ~SquareMatrix();
 };

@@ -37,6 +37,11 @@
 /task1/.vs/*
 /task1/x64/*
 /task1/task1/x64/*
-.gitignore
+/task1/task1/*.vcxproj.filters
+/task1/task1/*.vcxproj.user
 *.vcxproj.filters
 *.vcxproj.user
+
+.gitignore.txt
+
+.gitignore

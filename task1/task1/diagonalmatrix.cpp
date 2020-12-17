@@ -25,7 +25,7 @@ void DiagonalMatrix<T>::setElement(T element, int row, int column) {
 	if (((row < 0) || (row >= this->getNumberOfRows())) || ((column < 0) || (column >= this->getNumberOfColumns()))) {
 		throw std::out_of_range("out of range");
 	}
-	this->SquareMatrix<T>::setElement(0, column, element);
+	this->SquareMatrix<T>::setElement(element, 0, column);
 }
 
 template <typename T>
