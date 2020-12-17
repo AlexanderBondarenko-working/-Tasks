@@ -27,7 +27,7 @@ int main() {
 		cout << *(firstSquareMatr->matrixToString()) << "\n";
 		cout << *(secondSquareMatr->matrixToString()) << "\n";
 
-		std::unique_ptr<BaseMatrix<int>> resultBaseMatr ((*firstDiagMatr) * (*secondSquareMatr));
+		std::unique_ptr<BaseMatrix<int>> resultBaseMatr ((*secondBaseMatr) * (*firstBaseMatr));
 		cout << *(resultBaseMatr -> matrixToString()) << "\n";
 		
 		//cout << (diagMatr * firstBaseMatr)->matrixToString() << "\n";

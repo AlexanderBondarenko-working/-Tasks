@@ -78,9 +78,8 @@ BaseMatrix<T>::~BaseMatrix() {
 }
 
 template <typename T>
-std::unique_ptr<std::string> BaseMatrix<T>::matrixToString() { //возврат по умному указателю
+std::unique_ptr<std::string> BaseMatrix<T>::matrixToString() { 
     std::unique_ptr<std::string> matrixInString = std::make_unique<std::string>();
-    //std::string matrixInString;
     matrixInString->reserve( ((sizeof(T) * (this->getNumberOfRows() )) + (this->getNumberOfRows() + 1) ) * (this->getNumberOfColumns() ) );
 
     for (int indexOfRows = 0; indexOfRows < (this->getNumberOfRows() ); ++indexOfRows) {
@@ -123,18 +122,18 @@ void BaseMatrix<T>::setElement(T element, int row, int column) {
 }
 
 template <typename T>
-BaseMatrix<T>* BaseMatrix<T>::operator * (const BaseMatrix<T>& secondMatrix) const {
-    if ((this->numberOfRows != secondMatrix.numberOfColumns)
-        && (this->numberOfColumns != secondMatrix.numberOfRows)) {
+std::unique_ptr<BaseMatrix<T>> BaseMatrix<T>::operator * (const BaseMatrix<T>& secondMatrix) const {
+    if (this->numberOfColumns != secondMatrix.numberOfRows) {
         throw std::invalid_argument("wrong size of matrices");
     }
     return this->multiplication(secondMatrix);
 }
 
 template <typename T>
-BaseMatrix<T>* BaseMatrix<T>::multiplication(const BaseMatrix<T>& secondMatrix) const{
+std::unique_ptr<BaseMatrix<T>> BaseMatrix<T>::multiplication(const BaseMatrix<T>& secondMatrix) const{
     sourceCheck(secondMatrix);
-    BaseMatrix<T> * temporaryMatrix = new BaseMatrix<T>(this->getNumberOfRows(), secondMatrix.getNumberOfColumns());
+    std::unique_ptr<BaseMatrix<T>> temporaryMatrix = std::make_unique<BaseMatrix<T>>(this->getNumberOfRows(), secondMatrix.getNumberOfColumns());
+
     for (int tempMatrRow = 0; tempMatrRow < temporaryMatrix->getNumberOfColumns(); ++tempMatrRow) {
         for (int tempMatrColumn = 0; tempMatrColumn < temporaryMatrix->numberOfRows; ++tempMatrColumn) {
             temporaryMatrix->setElement(secondMatrix.scalarMultiplication(*this, secondMatrix, tempMatrColumn, tempMatrRow), tempMatrRow, tempMatrColumn);

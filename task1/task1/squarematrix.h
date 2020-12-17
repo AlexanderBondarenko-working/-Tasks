@@ -10,10 +10,11 @@ protected:
 	SquareMatrix(int numberOfRows, int numberOfColumns); 
 	SquareMatrix(int numberOfRows, int numberOfColumns, const T* fillingArray, int sizeOfarray);
 public:
-	SquareMatrix(int sizeOfMatrix);
-	SquareMatrix(int sizeOfMatrix, const T* fillingArray, int sizeOfarray);
+	SquareMatrix(int dimensionOfMatrix);
+	SquareMatrix(int dimensionOfMatrix, const T* fillingArray, int sizeOfarray);
 	SquareMatrix(const SquareMatrix<T>& source);
 	virtual ~SquareMatrix();
+	int getDimension();
 };
 
 #endif //TASK1_SQUAREMATRIX_H_

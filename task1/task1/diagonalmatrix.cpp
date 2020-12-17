@@ -5,11 +5,11 @@ template <typename T>
 DiagonalMatrix<T>::DiagonalMatrix() : SquareMatrix<T>::SquareMatrix() {}
 
 template <typename T>
-DiagonalMatrix<T>::DiagonalMatrix(int sizeOfMatrix) : SquareMatrix<T>::SquareMatrix(1, sizeOfMatrix) {}
+DiagonalMatrix<T>::DiagonalMatrix(int dimensionOfMatrix) : SquareMatrix<T>::SquareMatrix(1, dimensionOfMatrix) {}
 
 template <typename T>
-DiagonalMatrix<T>::DiagonalMatrix(int sizeOfMatrix, const T*
-	fillingArray, int sizeOfarray) : SquareMatrix<T>::SquareMatrix(1, sizeOfMatrix, fillingArray, sizeOfarray) {}
+DiagonalMatrix<T>::DiagonalMatrix(int dimensionOfMatrix, const T*
+	fillingArray, int sizeOfarray) : SquareMatrix<T>::SquareMatrix(1, dimensionOfMatrix, fillingArray, sizeOfarray) {}
 
 template <typename T>
 DiagonalMatrix<T>::DiagonalMatrix(const DiagonalMatrix<T>& source) : SquareMatrix<T>::SquareMatrix(source){}
@@ -19,7 +19,7 @@ DiagonalMatrix<T>::~DiagonalMatrix(){}
 
 template <typename T>
 void DiagonalMatrix<T>::setElement(T element, int row, int column) {
-	if (row != this->getNumberOfColumns()) {
+	if (row != column) {
 		throw std::out_of_range("out of diagonal");
 	}
 	if (((row < 0) || (row >= this->getNumberOfRows())) || ((column < 0) || (column >= this->getNumberOfColumns()))) {
@@ -29,18 +29,17 @@ void DiagonalMatrix<T>::setElement(T element, int row, int column) {
 }
 
 template <typename T>
-BaseMatrix<T>* DiagonalMatrix<T>::operator * (const BaseMatrix<T>& secondMatrix) const {
-	if ((this->getNumberOfRows() != secondMatrix.getNumberOfColumns())
-		|| (this->getNumberOfColumns() != secondMatrix.getNumberOfRows())) {
+std::unique_ptr<BaseMatrix<T>> DiagonalMatrix<T>::operator * (const BaseMatrix<T>& secondMatrix) const {
+	if (this->getNumberOfColumns() != secondMatrix.getNumberOfRows()) {
 		throw std::invalid_argument("wrong size of matrices");
 	}
 	return this->multiplication(secondMatrix);
 }
 
 template <typename T>
-BaseMatrix<T>* DiagonalMatrix<T>::multiplication(const BaseMatrix<T>& secondMatrix) const { 
+std::unique_ptr<BaseMatrix<T>> DiagonalMatrix<T>::multiplication(const BaseMatrix<T>& secondMatrix) const {
 	this->sourceCheck(secondMatrix);
-	BaseMatrix<T>* temporaryMatrix = new BaseMatrix<T>((this->getNumberOfRows()), secondMatrix.getNumberOfColumns());
+	std::unique_ptr<BaseMatrix<T>> temporaryMatrix = std::make_unique<BaseMatrix<T>>(this->getNumberOfRows(), secondMatrix.getNumberOfColumns());
 	for (int tempMatrRow = 0; tempMatrRow < this->getNumberOfColumns(); ++tempMatrRow) {
 		for (int tempMatrColumn = 0; tempMatrColumn < secondMatrix.getNumberOfColumns(); ++tempMatrColumn) {
 			temporaryMatrix->setElement(((this->getElement(tempMatrRow, tempMatrRow)) * (secondMatrix.getElement(tempMatrRow, tempMatrColumn))), tempMatrRow, tempMatrColumn);
