@@ -1,0 +1,49 @@
+# Prerequisites
+*.d
+*.tlog
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Игнорировать все файлы из папки и подпапок, если таковые будут
+/task2/task2/Debug/*
+/Debug/*
+/task2/.vs/*
+/task2/x64/*
+/task2/task2/x64/*
+/task2/task2/*.vcxproj.filters
+/task2/task2/*.vcxproj.user
+*.vcxproj.filters
+*.vcxproj.user
+/task1/*
+.gitignore.txt
+/task1
+.gitignore
+
+task1/
