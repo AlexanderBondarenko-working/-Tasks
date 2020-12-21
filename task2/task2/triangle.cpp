@@ -7,10 +7,23 @@ Triangle::Triangle(const Point& a, const Point& b, const Point& c) : a(a), b(b),
 Triangle::Triangle(const Triangle& source) : a(a), b(b), c(c) {}
 
 double Triangle::squareOftriangle() const {
-	double lenAB = std::sqrt(std::pow((a.getX() - b.getX()), 2) + std::pow((a.getY() - b.getY()),2));
-	double lenBC = std::sqrt(std::pow((b.getX() - c.getX()), 2) + std::pow((b.getY() - c.getY()), 2));
-	double lenCA = std::sqrt(std::pow((c.getX() - a.getX()), 2) + std::pow((c.getY() - a.getY()), 2));
-	double p = (lenAB + lenBC + lenCA) / 2; //semi-perimeter
+	double p = (getLenAB() + getLenBC() + getLenCA()) / 2; //semi-perimeter
 
-	return (std::sqrt(p*(p - lenAB)*(p - lenBC)*(p - lenCA)));
+	return (std::sqrt(p*(p - getLenAB())*(p - getLenBC())*(p - getLenCA())));
+}
+
+double Triangle::getLenAB() const {
+	return lenOfVector(a, b);
+}
+
+double Triangle::getLenBC() const {
+	return lenOfVector(b, c);
+}
+
+double Triangle::getLenCA() const {
+	return lenOfVector(c, a);
+}
+
+double Triangle::lenOfVector(const Point& firstPoint, const Point& secondPoint) const {
+	return std::sqrt(std::pow((firstPoint.getX() - secondPoint.getX()), 2) + std::pow((firstPoint.getY() - secondPoint.getY()), 2));
 }

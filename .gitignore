@@ -6,3 +6,6 @@
 /task2/task2/task2.vcxproj.user
 /task1
 /task2/.vs/
+/task2/Debug/
+task2/task2/Debug
+.gitignore
