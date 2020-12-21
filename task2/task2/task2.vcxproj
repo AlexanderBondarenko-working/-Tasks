@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="isoscelestriangle.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="righttriangle.h" />
     <ClInclude Include="triangle.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="isoscelestriangle.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="point.cpp" />
     <ClCompile Include="righttriangle.cpp" />
