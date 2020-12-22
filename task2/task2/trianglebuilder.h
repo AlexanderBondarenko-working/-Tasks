@@ -7,6 +7,7 @@ private:
     TriangleBuilder() {}
     TriangleBuilder(const TriangleBuilder&);
     TriangleBuilder& operator=(TriangleBuilder&);
+    void checkTriangle();
     
 public:
     static TriangleBuilder& getInstance();

@@ -3,6 +3,7 @@
 #define TASK2_RIGHTTRIANGLE_H_ 
 
 class RightTriangle : public Triangle {
+public:
 	RightTriangle();
 	RightTriangle(const Point& a, const Point& b, const Point& c);
 	RightTriangle(const RightTriangle& source);

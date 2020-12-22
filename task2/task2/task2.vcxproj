@@ -141,23 +141,23 @@
   <ItemGroup>
     <ClInclude Include="abstracttrianglebuilder.h" />
     <ClInclude Include="basetrianglebuilder.h" />
+    <ClInclude Include="equilateraltriangle.h" />
     <ClInclude Include="equilateraltrianglebuilder.h" />
-    <ClInclude Include="isoscelestriangle.h" />
-    <ClInclude Include="isoscelesttrianglebuilder.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="righttriangle.h" />
+    <ClInclude Include="righttrianglebuilder.h" />
     <ClInclude Include="triangle.h" />
     <ClInclude Include="trianglebuilder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="abstracttrianglebuilder.cpp" />
     <ClCompile Include="basetrianglebuilder.cpp" />
+    <ClCompile Include="equilateraltriangle.cpp" />
     <ClCompile Include="equilateraltrianglebuilder.cpp" />
-    <ClCompile Include="isoscelestriangle.cpp" />
-    <ClCompile Include="isoscelesttrianglebuilder.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="point.cpp" />
     <ClCompile Include="righttriangle.cpp" />
+    <ClCompile Include="righttrianglebuilder.cpp" />
     <ClCompile Include="triangle.cpp" />
     <ClCompile Include="trianglebuilder.cpp" />
   </ItemGroup>

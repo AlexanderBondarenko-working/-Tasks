@@ -7,9 +7,8 @@ class AbstractTriangleBuilder {
 	AbstractTriangleBuilder* nextPtr;
 public:
 	AbstractTriangleBuilder* setNext(AbstractTriangleBuilder* handler);
-	virtual Triangle getTriangle(const Point& a, const Point& b, const Point& c);
-	bool checKTriangle(const Point& a, const Point& b, const Point& c);
+	virtual Triangle* getTriangle(const Point& a, const Point& b, const Point& c);
 	double lenOfVector(const Point& firstPoint, const Point& secondPoint);
-	virtual void triangleCheckForBuilder();
+	virtual bool triangleCheckForBuilder(const Point& a, const Point& b, const Point& c);
 };
 #endif //TASK2_ABSTRACTTRIANGLEBUILDER_H_ 

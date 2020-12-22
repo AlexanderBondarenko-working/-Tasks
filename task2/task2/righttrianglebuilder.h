@@ -1,11 +1,11 @@
 #include "abstracttrianglebuilder.h"
 
-#ifndef TASK2_EQUILATERALTRIANGLEBUILDER_H_ 
-#define TASK2_EQUILATERALTRIANGLEBUILDER_H_ 
+#ifndef TASK2_RIGHTTRIANGLEBUILDER_H_ 
+#define TASK2_RIGHTTRIANGLEBUILDER_H_ 
 
-class EquilateTriangleBuilder : public AbstractTriangleBuilder {
+class RightTriangleBuilder : public AbstractTriangleBuilder {
 	virtual Triangle* getTriangle(const Point& a, const Point& b, const Point& c);
 	virtual bool triangleCheckForBuilder(const Point& a, const Point& b, const Point& c);
 };
 
-#endif //TASK2_EQUILATERALTRIANGLEBUILDER_H_ 
+#endif //TASK2_RIGHTTRIANGLEBUILDER_H_
