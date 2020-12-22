@@ -2,10 +2,15 @@
 
 TriangleBuilder& TriangleBuilder::getInstance() {
     static TriangleBuilder  builder;
-   /* MonkeyHandler* monkey = new MonkeyHandler;
-    SquirrelHandler* squirrel = new SquirrelHandler;
-    DogHandler* dog = new DogHandler;
-    monkey->SetNext(squirrel)->SetNext(dog);*/
-    //EquilateTriangleBuilder * equilateTriangle = new EquilateTriangleBuilder;
+    EquilateTriangleBuilder * equilateTriangle = new EquilateTriangleBuilder();
+    RightTriangleBuilder * rightTriangle = new RightTriangleBuilder();
+    BaseTriangleBuilder * baseTriangle = new BaseTriangleBuilder();
+    equilateTriangle->setNext(rightTriangle)->setNext(baseTriangle);
+    builder.startOfRespChain = equilateTriangle;
+
     return builder;
+}
+
+Triangle* TriangleBuilder::getTriangle(const Point& a, const Point& b, const Point& c) {
+    return (startOfRespChain->getTriangle(a, b, c));
 }

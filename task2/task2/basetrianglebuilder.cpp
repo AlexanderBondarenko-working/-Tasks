@@ -4,3 +4,7 @@ Triangle* BaseTriangleBuilder::getTriangle(const Point& a, const Point& b, const
 	Triangle* tempTriangle = new Triangle(a, b, c);
 	return tempTriangle;
 }
+
+bool BaseTriangleBuilder::triangleCheckForBuilder(const Point& a, const Point& b, const Point& c) {
+	return true;
+}
