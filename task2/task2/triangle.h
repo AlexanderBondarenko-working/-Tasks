@@ -7,6 +7,7 @@ class Triangle {
 	Point b;
 	Point c;
 	double lenOfVector(const Point& firstPoint, const Point& secondPoint) const;
+	void checkTriangle() const;
 public:
 	Triangle();
 	Triangle(const Point& a, const Point& b, const Point& c);
