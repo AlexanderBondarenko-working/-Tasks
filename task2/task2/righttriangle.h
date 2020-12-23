@@ -3,11 +3,13 @@
 #define TASK2_RIGHTTRIANGLE_H_ 
 
 class RightTriangle : public Triangle {
-public:
+protected:
 	RightTriangle();
 	RightTriangle(const Point& a, const Point& b, const Point& c);
 	RightTriangle(const RightTriangle& source);
+public:
 	virtual double squareOftriangle() const;
+	friend class RightTriangleBuilder;
 };
 
 

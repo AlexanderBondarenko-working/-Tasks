@@ -1,21 +1,22 @@
 # include "point.h"
+#include <vector>
 #ifndef TASK2_TRIANGLE_H_ 
 #define TASK2_TRIANGLE_H_ 
 
 class Triangle {
-	Point a;
-	Point b;
-	Point c;
+	std::vector<Point> points;
 	double lenOfVector(const Point& firstPoint, const Point& secondPoint) const;
-	void checkTriangle() const;
-public:
+	void fillvector(const Point& a, const Point& b, const Point& c);
+protected:
 	Triangle();
 	Triangle(const Point& a, const Point& b, const Point& c);
 	Triangle(const Triangle& source);
-	virtual double squareOftriangle() const;
 	double getLenAB() const;
 	double getLenBC() const;
 	double getLenCA() const;
+public:
+	virtual double squareOftriangle() const;
+	friend class BaseTriangleBuilder;
 };
 
 #endif //TASK2_TRIANGLE_H_ 

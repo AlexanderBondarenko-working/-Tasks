@@ -1,6 +1,8 @@
 #include "abstracttrianglebuilder.h"
 #include <cmath>
 
+AbstractTriangleBuilder::AbstractTriangleBuilder() : nextPtr(nullptr) {}
+
 AbstractTriangleBuilder* AbstractTriangleBuilder::setNext(AbstractTriangleBuilder* handler) {
 	this->nextPtr = handler;
 	return handler;

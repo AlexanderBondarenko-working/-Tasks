@@ -16,7 +16,7 @@ Point& Point::operator = (const Point& source) {
 }
 bool Point::operator == (const Point& secondPoint) const {
 	checkPoint(secondPoint, "Invalid second argument");
-	return ((this->x == secondPoint.x) || (this->y == secondPoint.y));
+	return ((this->x == secondPoint.x) && (this->y == secondPoint.y));
 }
 Point Point::operator - (const Point& secondPoint) const {//??????? ?????? ??????????
 	checkPoint(secondPoint, "Invalid second argument");

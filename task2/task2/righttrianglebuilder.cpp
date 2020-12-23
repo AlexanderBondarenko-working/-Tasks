@@ -1,6 +1,8 @@
 #include "righttrianglebuilder.h"
 #include "righttriangle.h"
 
+RightTriangleBuilder::RightTriangleBuilder(){}
+
 Triangle* RightTriangleBuilder::getTriangle(const Point& a, const Point& b, const Point& c) {
 	if (triangleCheckForBuilder(a, b, c)) {
 		RightTriangle* tempTriangle = new RightTriangle(a, b, c);

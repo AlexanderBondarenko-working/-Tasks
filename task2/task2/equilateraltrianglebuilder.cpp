@@ -1,6 +1,8 @@
 #include "equilateraltrianglebuilder.h"
 #include "equilateraltriangle.h"
 
+EquilateTriangleBuilder::EquilateTriangleBuilder(){}
+
 Triangle* EquilateTriangleBuilder::getTriangle(const Point& a, const Point& b, const Point& c) {
 	if (triangleCheckForBuilder(a, b, c)) {
 		EquilateralTriangle* tempTriangle = new EquilateralTriangle(a, b, c);
