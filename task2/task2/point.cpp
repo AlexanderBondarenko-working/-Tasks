@@ -1,21 +1,28 @@
 # include "point.h"
 #include <stdexcept>
+#include <cmath>
 
 Point::Point() : x(0.0), y(0.0) {}
 Point::Point(double x, double y) : x(x), y(y) {}
 Point::Point(const Point& source) {
-	checkPoint(source, "invalid source");
+	if (&source == NULL) {
+		throw std::invalid_argument("invalid source");
+	}
 	x = source.x;
 	y = source.y;
 }
 Point& Point::operator = (const Point& source) {
-	checkPoint(source, "invalid source");
+	if (&source == NULL) {
+		throw std::invalid_argument("invalid source");
+	}
 	x = source.x;
 	y = source.y;
 	return *this;
 }
 bool Point::operator == (const Point& secondPoint) const {
-	checkPoint(secondPoint, "Invalid second argument");
+	if (&secondPoint == NULL) {
+		return false;
+	}
 	return ((this->x == secondPoint.x) && (this->y == secondPoint.y));
 }
 
@@ -26,8 +33,8 @@ double Point::getY() const {
 	return this->y;
 }
 Point::~Point() {}
-void Point::checkPoint(const Point& source, const char* message) const {
-	if (&source == NULL) {
-		throw std::invalid_argument(message);
-	}
+
+double Point::distanceTo(const Point& secondPoint) const {
+	return std::sqrt(std::pow((this-> getX() - secondPoint.getX()), 2) + std::pow((this-> getY() - secondPoint.getY()), 2));
 }
+

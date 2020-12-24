@@ -9,7 +9,7 @@ protected:
 	EquilateralTriangle(const Point& a, const Point& b, const Point& c);
 	EquilateralTriangle(const EquilateralTriangle& source);
 public:
-	virtual double squareOftriangle() const;
+	virtual double squareOfTriangle() const;
 	friend class EquilateTriangleBuilder;
 };
 

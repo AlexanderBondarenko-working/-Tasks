@@ -8,9 +8,7 @@ class AbstractTriangleBuilder {
 protected:
 	AbstractTriangleBuilder();
 	AbstractTriangleBuilder* setNext(AbstractTriangleBuilder* nextPtr);
-	virtual Triangle* getTriangle(const Point& a, const Point& b, const Point& c);
-	double lenOfSide(const Point& firstPoint, const Point& secondPoint);
-	virtual bool triangleCheckForBuilder(const Point& a, const Point& b, const Point& c) = 0;
+	virtual Triangle* createTriangle(const Point& a, const Point& b, const Point& c);
 	friend class TriangleBuilder;
 	friend class TriangleBuilderDestroyer;
 };

@@ -3,17 +3,10 @@
 
 EquilateTriangleBuilder::EquilateTriangleBuilder(){}
 
-Triangle* EquilateTriangleBuilder::getTriangle(const Point& a, const Point& b, const Point& c) {
-	if (triangleCheckForBuilder(a, b, c)) {
+Triangle* EquilateTriangleBuilder::createTriangle(const Point& a, const Point& b, const Point& c) {
+	if (((a.distanceTo(b) == b.distanceTo(c)) && (b.distanceTo(c) == c.distanceTo(a)))) {
 		EquilateralTriangle* tempTriangle = new EquilateralTriangle(a, b, c);
 		return tempTriangle;
 	}
-	return AbstractTriangleBuilder::getTriangle(a, b, c);
-}
-
-bool EquilateTriangleBuilder::triangleCheckForBuilder(const Point& a, const Point& b, const Point& c) {
-	if ((lenOfSide(a, b) == lenOfSide(b, c)) && (lenOfSide(b, c) == lenOfSide(c, a))) {
-		return true;
-	}
-	return false;
+	return AbstractTriangleBuilder::createTriangle(a, b, c);
 }

@@ -4,7 +4,6 @@
 class Point {
 	double x;
 	double y;
-	void checkPoint(const Point& source, const char* message) const;
 public:
 	Point();
 	Point(double x, double y);
@@ -14,7 +13,7 @@ public:
 	double getX() const;
 	double getY() const;
 	~Point();
+	double distanceTo(const Point& source) const;
 };
-
 
 #endif //TASK2_POINT_H

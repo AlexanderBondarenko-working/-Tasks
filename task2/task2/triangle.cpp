@@ -11,26 +11,22 @@ Triangle::Triangle(const Point& a, const Point& b, const Point& c){
 Triangle::Triangle(const Triangle& source){
 	fillvector(source.points.at(0), source.points.at(1), source.points.at(2));
 }
-double Triangle::squareOftriangle() const {
+double Triangle::squareOfTriangle() const {
 	double p = (getLenAB() + getLenBC() + getLenCA()) / 2; //semi-perimeter
 
 	return (std::sqrt(p*(p - getLenAB())*(p - getLenBC())*(p - getLenCA())));
 }
 
 double Triangle::getLenAB() const {
-	return lenOfSide(points.at(0), points.at(1));
+	return points.at(0).distanceTo(points.at(1));
 }
 
 double Triangle::getLenBC() const {
-	return lenOfSide(points.at(1), points.at(2));
+	return points.at(1).distanceTo(points.at(2));
 }
 
 double Triangle::getLenCA() const {
-	return lenOfSide(points.at(2), points.at(0));
-}
-
-double Triangle::lenOfSide(const Point& firstPoint, const Point& secondPoint) const {
-	return std::sqrt(std::pow((firstPoint.getX() - secondPoint.getX()), 2) + std::pow((firstPoint.getY() - secondPoint.getY()), 2));
+	return points.at(2).distanceTo(points.at(0));
 }
 
 void Triangle::fillvector(const Point& a, const Point& b, const Point& c) {

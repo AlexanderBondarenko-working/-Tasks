@@ -9,7 +9,7 @@ protected:
 	RightTriangle(const Point& a, const Point& b, const Point& c);
 	RightTriangle(const RightTriangle& source);
 public:
-	virtual double squareOftriangle() const;
+	virtual double squareOfTriangle() const;
 	friend class RightTriangleBuilder;
 };
 

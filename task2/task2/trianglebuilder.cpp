@@ -37,20 +37,16 @@ TriangleBuilder& TriangleBuilder::getObject() {
 }
 
 void TriangleBuilder::checkTriangle(const Point& a, const Point& b, const Point& c) const {
-    if (((lenOfSide(a, b) + lenOfSide(b, c)) <= lenOfSide(c, a))
-        || ((lenOfSide(b, c) + lenOfSide(c, a)) <= lenOfSide(a, b))
-        || ((lenOfSide(c, a) + lenOfSide(a, b)) <= lenOfSide(b, c))
+    if (((a.distanceTo(b) + b.distanceTo(c)) <= c.distanceTo(a))
+        || ((b.distanceTo(c) + c.distanceTo(a)) <= a.distanceTo(b))
+        || ((c.distanceTo(a) + a.distanceTo(b)) <= b.distanceTo(c))
         || (a == b) || (b == c) || (a == c))
     {
         throw std::invalid_argument("invalid points");
     }
 }
 
-Triangle* TriangleBuilder::getTriangle(const Point& a, const Point& b, const Point& c) {
+Triangle* TriangleBuilder::createTriangle(const Point& a, const Point& b, const Point& c) {
     checkTriangle(a, b, c);
-    return (startOfRespChain->getTriangle(a, b, c));
-}
-
-double TriangleBuilder::lenOfSide(const Point& firstPoint, const Point& secondPoint) const {
-    return std::sqrt(std::pow((firstPoint.getX() - secondPoint.getX()), 2) + std::pow((firstPoint.getY() - secondPoint.getY()), 2));
+    return (startOfRespChain->createTriangle(a, b, c));
 }

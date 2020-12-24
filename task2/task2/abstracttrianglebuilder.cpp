@@ -8,13 +8,9 @@ AbstractTriangleBuilder* AbstractTriangleBuilder::setNext(AbstractTriangleBuilde
 	return nextPtr;
 }
 
-double AbstractTriangleBuilder::lenOfSide(const Point& firstPoint, const Point& secondPoint) {
-	return std::sqrt(std::pow((firstPoint.getX() - secondPoint.getX()), 2) + std::pow((firstPoint.getY() - secondPoint.getY()), 2));
-}
-
-Triangle* AbstractTriangleBuilder::getTriangle(const Point& a, const Point& b, const Point& c){
+Triangle* AbstractTriangleBuilder::createTriangle(const Point& a, const Point& b, const Point& c){
 	if (this-> nextPtr) {
-		return this-> nextPtr->getTriangle(a, b, c);
+		return this-> nextPtr->createTriangle(a, b, c);
 	}
 
 	return nullptr;

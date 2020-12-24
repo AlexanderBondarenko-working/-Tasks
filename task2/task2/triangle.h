@@ -6,7 +6,6 @@
 
 class Triangle {
 	std::vector<Point> points;
-	double lenOfSide(const Point& firstPoint, const Point& secondPoint) const;
 	void fillvector(const Point& a, const Point& b, const Point& c);
 protected:
 	Triangle();
@@ -16,7 +15,7 @@ protected:
 	double getLenBC() const;
 	double getLenCA() const;
 public:
-	virtual double squareOftriangle() const;
+	virtual double squareOfTriangle() const;
 	friend class BaseTriangleBuilder;
 };
 

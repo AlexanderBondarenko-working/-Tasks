@@ -23,7 +23,6 @@ class TriangleBuilder
 private:
     static TriangleBuilder* builderPtr;
     static TriangleBuilderDestroyer destroyer;
-protected:
     TriangleBuilder();
     TriangleBuilder(const TriangleBuilder&);
     TriangleBuilder& operator=(TriangleBuilder&);
@@ -32,10 +31,9 @@ protected:
 
     void checkTriangle(const Point& a, const Point& b, const Point& c) const;
     EquilateTriangleBuilder* startOfRespChain;
-    double lenOfSide(const Point& firstPoint, const Point& secondPoint) const;
 public:
     static TriangleBuilder& getObject();
-    Triangle* getTriangle(const Point& a, const Point& b, const Point& c);
+    Triangle* createTriangle(const Point& a, const Point& b, const Point& c);
 };
 
 #endif //TASK2_TRIANGLEBUILDER_H_
