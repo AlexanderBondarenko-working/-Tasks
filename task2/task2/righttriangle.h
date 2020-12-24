@@ -1,6 +1,7 @@
-#include "triangle.h"
 #ifndef TASK2_RIGHTTRIANGLE_H_ 
 #define TASK2_RIGHTTRIANGLE_H_ 
+
+#include "triangle.h"
 
 class RightTriangle : public Triangle {
 protected:

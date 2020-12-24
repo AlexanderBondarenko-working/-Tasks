@@ -3,6 +3,7 @@
 #include <stdexcept>
 
 TriangleBuilder* TriangleBuilder::builderPtr = nullptr;
+
 TriangleBuilderDestroyer TriangleBuilder::destroyer;
 
 TriangleBuilderDestroyer::~TriangleBuilderDestroyer() {
@@ -11,9 +12,17 @@ TriangleBuilderDestroyer::~TriangleBuilderDestroyer() {
     delete (builderPtr->startOfRespChain);
     delete builderPtr;
 }
+
 void TriangleBuilderDestroyer::initialize(TriangleBuilder* p) {
     builderPtr = p;
 }
+
+TriangleBuilder::TriangleBuilder() : startOfRespChain(nullptr) {}
+
+TriangleBuilder::TriangleBuilder(const TriangleBuilder&) : startOfRespChain(nullptr) {}
+
+TriangleBuilder::~TriangleBuilder() {}
+
 TriangleBuilder& TriangleBuilder::getObject() {
     if (!builderPtr) {
         builderPtr = new TriangleBuilder();
@@ -28,9 +37,9 @@ TriangleBuilder& TriangleBuilder::getObject() {
 }
 
 void TriangleBuilder::checkTriangle(const Point& a, const Point& b, const Point& c) const {
-    if (((lenOfVector(a, b) + lenOfVector(b, c)) <= lenOfVector(c, a))
-        || ((lenOfVector(b, c) + lenOfVector(c, a)) <= lenOfVector(a, b))
-        || ((lenOfVector(c, a) + lenOfVector(a, b)) <= lenOfVector(b, c))
+    if (((lenOfSide(a, b) + lenOfSide(b, c)) <= lenOfSide(c, a))
+        || ((lenOfSide(b, c) + lenOfSide(c, a)) <= lenOfSide(a, b))
+        || ((lenOfSide(c, a) + lenOfSide(a, b)) <= lenOfSide(b, c))
         || (a == b) || (b == c) || (a == c))
     {
         throw std::invalid_argument("invalid points");
@@ -42,6 +51,6 @@ Triangle* TriangleBuilder::getTriangle(const Point& a, const Point& b, const Poi
     return (startOfRespChain->getTriangle(a, b, c));
 }
 
-double TriangleBuilder::lenOfVector(const Point& firstPoint, const Point& secondPoint) const {
+double TriangleBuilder::lenOfSide(const Point& firstPoint, const Point& secondPoint) const {
     return std::sqrt(std::pow((firstPoint.getX() - secondPoint.getX()), 2) + std::pow((firstPoint.getY() - secondPoint.getY()), 2));
 }

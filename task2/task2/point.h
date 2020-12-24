@@ -11,7 +11,6 @@ public:
 	Point(const Point& source);
 	Point& operator = (const Point& source);
 	bool operator == (const Point& secondPoint) const;
-	Point operator - (const Point& secondPoint) const;
 	double getX() const;
 	double getY() const;
 	~Point();

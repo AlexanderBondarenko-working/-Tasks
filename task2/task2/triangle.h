@@ -1,11 +1,12 @@
-# include "point.h"
-#include <vector>
 #ifndef TASK2_TRIANGLE_H_ 
-#define TASK2_TRIANGLE_H_ 
+#define TASK2_TRIANGLE_H_
+
+#include "point.h"
+#include <vector>
 
 class Triangle {
 	std::vector<Point> points;
-	double lenOfVector(const Point& firstPoint, const Point& secondPoint) const;
+	double lenOfSide(const Point& firstPoint, const Point& secondPoint) const;
 	void fillvector(const Point& a, const Point& b, const Point& c);
 protected:
 	Triangle();

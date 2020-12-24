@@ -18,18 +18,18 @@ double Triangle::squareOftriangle() const {
 }
 
 double Triangle::getLenAB() const {
-	return lenOfVector(points.at(0), points.at(1));
+	return lenOfSide(points.at(0), points.at(1));
 }
 
 double Triangle::getLenBC() const {
-	return lenOfVector(points.at(1), points.at(2));
+	return lenOfSide(points.at(1), points.at(2));
 }
 
 double Triangle::getLenCA() const {
-	return lenOfVector(points.at(2), points.at(0));
+	return lenOfSide(points.at(2), points.at(0));
 }
 
-double Triangle::lenOfVector(const Point& firstPoint, const Point& secondPoint) const {
+double Triangle::lenOfSide(const Point& firstPoint, const Point& secondPoint) const {
 	return std::sqrt(std::pow((firstPoint.getX() - secondPoint.getX()), 2) + std::pow((firstPoint.getY() - secondPoint.getY()), 2));
 }
 
@@ -40,12 +40,3 @@ void Triangle::fillvector(const Point& a, const Point& b, const Point& c) {
 	points.at(2) = c;
 
 }
-//
-//void Triangle::checkTriangle() const {
-//	if (!(((lenOfVector(a, b) + lenOfVector(b, c)) > lenOfVector(c, a))
-//		|| ((lenOfVector(b, c) + lenOfVector(c, a)) > lenOfVector(a, b))
-//		|| ((lenOfVector(c, a) + lenOfVector(a, b)) > lenOfVector(b, c)))) 
-//	{
-//		throw std::invalid_argument("invalid point");
-//	}
-//}

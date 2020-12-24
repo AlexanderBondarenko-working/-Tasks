@@ -18,10 +18,7 @@ bool Point::operator == (const Point& secondPoint) const {
 	checkPoint(secondPoint, "Invalid second argument");
 	return ((this->x == secondPoint.x) && (this->y == secondPoint.y));
 }
-Point Point::operator - (const Point& secondPoint) const {//??????? ?????? ??????????
-	checkPoint(secondPoint, "Invalid second argument");
-	return Point((this->x - secondPoint.x), (this->y - secondPoint.y));
-}
+
 double Point::getX() const {
 	return this->x;
 }

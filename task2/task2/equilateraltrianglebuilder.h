@@ -1,7 +1,7 @@
-#include "abstracttrianglebuilder.h"
-
 #ifndef TASK2_EQUILATERALTRIANGLEBUILDER_H_ 
 #define TASK2_EQUILATERALTRIANGLEBUILDER_H_ 
+
+#include "abstracttrianglebuilder.h"
 
 class EquilateTriangleBuilder : public AbstractTriangleBuilder {
 protected:

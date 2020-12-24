@@ -12,7 +12,7 @@ Triangle* EquilateTriangleBuilder::getTriangle(const Point& a, const Point& b, c
 }
 
 bool EquilateTriangleBuilder::triangleCheckForBuilder(const Point& a, const Point& b, const Point& c) {
-	if ((lenOfVector(a, b) == lenOfVector(b, c)) && (lenOfVector(b, c) == lenOfVector(c, a))) {
+	if ((lenOfSide(a, b) == lenOfSide(b, c)) && (lenOfSide(b, c) == lenOfSide(c, a))) {
 		return true;
 	}
 	return false;

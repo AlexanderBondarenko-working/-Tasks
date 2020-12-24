@@ -1,7 +1,7 @@
-#include "triangle.h"
-
 #ifndef TASK2_EQUILATERALTRIANGLE_H_ 
 #define TASK2_EQUILATERALTRIANGLE_H_ 
+
+#include "triangle.h"
 
 class EquilateralTriangle : public Triangle {
 protected:
