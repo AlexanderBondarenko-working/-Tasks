@@ -7,10 +7,18 @@ TriangleBuilder* TriangleBuilder::builderPtr = nullptr;
 TriangleBuilderDestroyer TriangleBuilder::destroyer;
 
 TriangleBuilderDestroyer::~TriangleBuilderDestroyer() {
-    delete (builderPtr->startOfRespChain-> nextPtr-> nextPtr);
-    delete (builderPtr->startOfRespChain-> nextPtr);
-    delete (builderPtr->startOfRespChain);
-    delete builderPtr;
+    if ((builderPtr->startOfRespChain->nextPtr->nextPtr) != nullptr) {
+        delete (builderPtr->startOfRespChain->nextPtr->nextPtr);
+    }
+    if ((builderPtr->startOfRespChain->nextPtr) != nullptr) {
+        delete (builderPtr->startOfRespChain->nextPtr);
+    }
+    if ((builderPtr->startOfRespChain) != nullptr) {
+        delete (builderPtr->startOfRespChain);
+    }
+    if (builderPtr != nullptr) {
+        delete builderPtr;
+    }
 }
 
 void TriangleBuilderDestroyer::initialize(TriangleBuilder* p) {

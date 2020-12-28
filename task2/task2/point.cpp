@@ -23,7 +23,7 @@ bool Point::operator == (const Point& secondPoint) const {
 	if (&secondPoint == NULL) {
 		return false;
 	}
-	return ((this->x == secondPoint.x) && (this->y == secondPoint.y));
+	return ((std::abs(this->x - secondPoint.x) < std::numeric_limits<double>::epsilon()) && (std::abs(this->y - secondPoint.y) < std::numeric_limits<double>::epsilon()));
 }
 
 double Point::getX() const {

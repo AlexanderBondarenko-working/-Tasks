@@ -6,7 +6,7 @@
 
 class Triangle {
 	std::vector<Point> points;
-	void fillvector(const Point& a, const Point& b, const Point& c);
+	void initializer(const Point& a, const Point& b, const Point& c);
 protected:
 	Triangle();
 	Triangle(const Point& a, const Point& b, const Point& c);

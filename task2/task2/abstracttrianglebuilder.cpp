@@ -1,5 +1,6 @@
 #include "abstracttrianglebuilder.h"
 #include <cmath>
+#include <stdexcept>
 
 AbstractTriangleBuilder::AbstractTriangleBuilder() : nextPtr(nullptr) {}
 
@@ -9,9 +10,8 @@ AbstractTriangleBuilder* AbstractTriangleBuilder::setNext(AbstractTriangleBuilde
 }
 
 Triangle* AbstractTriangleBuilder::createTriangle(const Point& a, const Point& b, const Point& c){
-	if (this-> nextPtr) {
-		return this-> nextPtr->createTriangle(a, b, c);
+	if ((this-> nextPtr) == nullptr) {
+		throw std::logic_error("nullptr pointer in chain");
 	}
-
-	return nullptr;
+	return this->nextPtr->createTriangle(a, b, c);
 }

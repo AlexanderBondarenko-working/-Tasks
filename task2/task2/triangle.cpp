@@ -3,13 +3,13 @@
 #include <cmath>
 
 Triangle::Triangle(){
-	fillvector(Point(), Point(), Point());
+	initializer(Point(), Point(), Point());
 }
 Triangle::Triangle(const Point& a, const Point& b, const Point& c){
-	fillvector(a, b, c);
+	initializer(a, b, c);
 }
 Triangle::Triangle(const Triangle& source){
-	fillvector(source.points.at(0), source.points.at(1), source.points.at(2));
+	initializer(source.points.at(0), source.points.at(1), source.points.at(2));
 }
 double Triangle::squareOfTriangle() const {
 	double p = (getLenAB() + getLenBC() + getLenCA()) / 2; //semi-perimeter
@@ -29,7 +29,7 @@ double Triangle::getLenCA() const {
 	return points.at(2).distanceTo(points.at(0));
 }
 
-void Triangle::fillvector(const Point& a, const Point& b, const Point& c) {
+void Triangle::initializer(const Point& a, const Point& b, const Point& c) {
 	points.resize(3);
 	points.at(0) = a;
 	points.at(1) = b;
