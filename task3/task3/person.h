@@ -4,8 +4,8 @@
 #include <string>
 #include "address.h"
 #include "nlohmann/json.hpp"
-using nlohmann::json;
 
+using nlohmann::json;
 
 	class Person {
 		std::string name;

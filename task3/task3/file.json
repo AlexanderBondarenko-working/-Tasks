@@ -1,0 +1,1 @@
+[{"adr":{"city":"Minsk", "streetAddress" : "Pushkina, 11"}, "age" : 32, "name" : "Ivan", "surname" : "Ivanov"}, { "adr":{"city":"Minsk","streetAddress" : "Pushkina, 11"},"age" : 32,"name" : "Misha","surname" : "Ivanov" }, { "adr":{"city":"Minsk","streetAddress" : "Pushkina, 11"},"age" : 32,"name" : "Maksim","surname" : "Ivanov" }]

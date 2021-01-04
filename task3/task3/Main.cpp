@@ -15,33 +15,18 @@
 int main() {
 
 	json j;
-	j["name"] = "Ivan";
-	j["surname"] = "Ivanov";
-	j["age"] = 32;
-	j["adr"] = { {"city", "Minsk"}, {"streetAddress", "Pushkina, 11"} };
-	
-	std::vector<Person> persons;
-	persons.resize(3);
-	persons.at(0) = j.get<Person>();
-	j["name"] = "Misha";
-	persons.at(1) = j.get<Person>();
-	j["name"] = "Maksim";
-	persons.at(2) = j.get<Person>();
-
-	json j_vec(persons);
 
 	try {
 		std::ifstream inpt("file.json");
-		if (!inpt) {
+		if (inpt.is_open()) {
 			
-			//inpt >> j;
-			//std::cout << j << std::endl << std::endl;
-			std::unique_ptr<std::vector<Person>> persons = PersonBuilder::getObject().createPersons(j_vec, BaseChecker());
+			json j = json::parse(inpt);
+		
+			std::unique_ptr<std::vector<Person>> persons = PersonBuilder::getObject().createPersons(j, BaseChecker());
 
-			json j2;
 			for (std::vector<Person>::iterator it = persons->begin(); it != persons->end(); ++it) {
-				j2 = *it;
-				std::cout << j2 << '\n';
+				j = *it;
+				std::cout << j << '\n';
 			}
 		}
 		inpt.close();
@@ -50,7 +35,7 @@ int main() {
 	{
 		std::cerr << exception.what() << '\n';
 	}
-	return 0;
 
 	return 0;
 }
+//[{"adr":{"city":"Minsk", "streetAddress" : "Pushkina, 11"}, "age" : 32, "name" : "Ivan", "surname" : "Ivanov"}, { "adr":{"city":"Minsk","streetAddress" : "Pushkina, 11"},"age" : 32,"name" : "Misha","surname" : "Ivanov" }, { "adr":{"city":"Minsk","streetAddress" : "Pushkina, 11"},"age" : 32,"name" : "Ivan","surname" : "Ivanov" }]

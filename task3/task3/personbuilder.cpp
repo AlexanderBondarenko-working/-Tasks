@@ -42,9 +42,6 @@ std::unique_ptr<std::vector<Person>> PersonBuilder::createPersons(json& j, const
             }
         }
     }
-   // for (json::iterator it = j.begin(); it != j.end(); ++it) {
-        //persons->push_back(it-> get<Person>());
-   // }
 
     return persons;
 }
