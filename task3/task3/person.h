@@ -13,7 +13,13 @@ using nlohmann::json;
 		int age;
 		Address adr;
 
-
+	public:
+		Person();
+		Person(std::string& name, std::string& surname, int age, Address& adr);
+		std::string getName() const;
+		std::string getSurname() const;
+		int getAge() const;
+		const Address* getAdr() const;
 		friend void to_json(json& j, const Person& p);
 		friend void from_json(const json& j, Person& p);
 		friend class PersonBuilder;

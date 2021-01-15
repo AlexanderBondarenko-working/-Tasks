@@ -8,6 +8,11 @@ using nlohmann::json;
 class Address {
 	std::string city;
 	std::string streetAddress;
+public:
+	Address(std::string& city, std::string& streetAddress);
+	Address();
+	std::string getCity() const;
+	std::string getStreetAddress() const;
 	friend void to_json(json& j, const Address& adr);
 	friend void from_json(const json& j, Address& adr);
 };
