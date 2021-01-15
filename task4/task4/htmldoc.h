@@ -5,13 +5,23 @@
 #include "body.h"
 #include "head.h"
 #include "parser.h"
+#include  <map>
+#include "attribute.h"
 
 class HTMLDoc {
 	std::string doctype;
 	Parser parser;
-	//attributs for teg html
+	map<string, Attribute> attributes;
 	Head head;
 	Body body;
-	void parse(); //call parser
+	
+public:
+	void parse(); //call parser.parse
+	string objectToString() const;
+
+	string getDoctype() const;
+	string getHead() const;
+	string getBody() const;
+
 
 };

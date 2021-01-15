@@ -142,6 +142,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="attribute.h" />
     <ClInclude Include="body.h" />
     <ClInclude Include="elementofbody.h" />
     <ClInclude Include="elementofhead.h" />
