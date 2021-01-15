@@ -1,15 +1,15 @@
 #pragma once
 
 #include <iostream> 
-#include <map> 
+#include <vector> 
 #include <string>
 #include "elementofBody.h"
 #include "attribute.h"
 using namespace std;
 
 class Body {
-	map<string, Attribute> attributes;
-	std::multimap <std::string, ElementOfBody> elementsOfBody;
+	vector <pair<string, ElementOfBody>> elementsOfBody;
+	vector <pair<string, Attribute>> attributes;
 public:
 	void parseFromString(string source);
 	string objectTostring() const;

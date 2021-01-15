@@ -7,5 +7,6 @@
 using namespace std;
 
 class Parser {
-	virtual string parse(ifstream inputSource, Body & bodyTarget, Head headTarget);
+public:
+	virtual string parse(HTMLDoc & htmlDocTarget, Body & bodyTarget, Head headTarget) = 0;
 };
