@@ -1,0 +1,42 @@
+<!DCTYPE html> == $0
+<html class="js svg svgfilters svgclippaths svgforeignobject smil inlinesvg svgasimg formattribute flexbox csstransforms">
+<head>
+    <!--  -->
+    <title>Национальный правовой Интернет-портал Республики Беларусь</title>   
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="право, правовая информация, правовая информатизация, официальное опубликование">
+    <meta name="description" content="Основной государственный информационный ресурс глобальной компьютерной сети Интернет в области права и правовой информатизации.">
+    <link href="/bitrix/cache/css/s1/index/template_da216a14263e5eb9d28368538b543f44/template_da216a14263e5eb9d28368538b543f44.css?16031776709091" type="text/css" data-template-style="true" rel="stylesheet">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="viewport" id="viewport" content="width=device-width, user-scalable=no">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://www.pravo.by/">
+    <meta property="og:title" content="Национальный правовой Интернет-портал Республики Беларусь">
+    <meta property="og:image" content="http://pravo.by/upload/og_pravo.jpg">
+    <meta property="og:image:height" content="200">
+    <meta property="og:image:width" content="382">
+    <meta property="og:description" content="Основной государственный информационный ресурс глобальной компьютерной сети Интернет в области права и правовой информатизации.">
+    <!-- <link rel="stylesheet" media="screen" href="/local/templates/.default/css/screen.css">
+    <link rel="stylesheet" media="screen" href="/local/templates/.default/css/adaptive.css"> -->
+    <link rel="stylesheet" media="screen" href="/local/templates/.default/css/screen_adaptive.css">
+    <link rel="stylesheet" media="screen" href="/local/templates/.default/css/style.css">
+    <!--[if gte IE 9]>
+        <style type="text/css">.gradient {filter: none;}</style>
+    <![endif]-->
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" media="screen" href="/local/templates/.default/css/ie.css">
+        <script type="text/javascript" src="/local/templates/.default/js/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- Google Tag Manager -->
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script type="text/javascript" async="" src="https://mc.yandex.ru/metrika/watch.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-TRWH5FG"></script>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TRWH5FG');</script>
+    <!-- End Google Tag Manager -->
+</head>
+</html>

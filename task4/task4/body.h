@@ -1,17 +1,13 @@
 #pragma once
 
-#include <iostream> 
-#include <vector> 
-#include <string>
-#include "elementofBody.h"
-#include "attribute.h"
+#include "element.h"
 using namespace std;
 
-class Body {
-	vector <pair<string, ElementOfBody>> elementsOfBody;
-	vector <pair<string, Attribute>> attributes;
+class Body : public Element {
 public:
-	void parseFromString(string source);
-	string objectTostring() const;
+	virtual void parseFromString(string source);
+	virtual string getTipe() const {
+		return "body";
+	}
 
 };

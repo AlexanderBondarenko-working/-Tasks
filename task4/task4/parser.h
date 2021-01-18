@@ -8,5 +8,5 @@ using namespace std;
 
 class Parser {
 public:
-	virtual string parse(HTMLDoc & htmlDocTarget, Body & bodyTarget, Head headTarget) = 0;
+	virtual string parse(HTMLDoc & htmlDocTarget, Body & bodyTarget, Head & headTarget) = 0;
 };

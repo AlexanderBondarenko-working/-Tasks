@@ -139,17 +139,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="element.cpp" />
     <ClCompile Include="htmldoc.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="attrasync.h" />
+    <ClInclude Include="attrcharset.h" />
+    <ClInclude Include="attrclass.h" />
+    <ClInclude Include="attrcontent.h" />
+    <ClInclude Include="attrdatatemplatestyle.h" />
+    <ClInclude Include="attrhref.h" />
+    <ClInclude Include="attrhttpequiv.h" />
     <ClInclude Include="attribute.h" />
+    <ClInclude Include="attrid.h" />
+    <ClInclude Include="attrmedia.h" />
+    <ClInclude Include="attrname.h" />
+    <ClInclude Include="attrproperty.h" />
+    <ClInclude Include="attrrel.h" />
+    <ClInclude Include="attrsrc.h" />
+    <ClInclude Include="attrtype.h" />
     <ClInclude Include="body.h" />
-    <ClInclude Include="elementofbody.h" />
-    <ClInclude Include="elementofhead.h" />
+    <ClInclude Include="element.h" />
     <ClInclude Include="head.h" />
+    <ClInclude Include="headersofattributes.h" />
+    <ClInclude Include="headersofsubelements.h" />
     <ClInclude Include="htmldoc.h" />
+    <ClInclude Include="link.h" />
+    <ClInclude Include="meta.h" />
     <ClInclude Include="parser.h" />
+    <ClInclude Include="script.h" />
+    <ClInclude Include="subelement.h" />
+    <ClInclude Include="title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

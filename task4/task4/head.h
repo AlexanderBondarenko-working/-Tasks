@@ -1,18 +1,14 @@
 #pragma once
 
-#include <iostream> 
-#include <map> 
-#include <string>
-#include "elementofhead.h"
-#include "attribute.h"
-#include <vector>
+#include "element.h" 
+
 using namespace std;
 
-class Head {
-	vector <pair<string, ElementOfHead>> elementsOfHead;
-	vector <pair<string, Attribute>> attributes;
+class Head : public Element {
 public:
-	void parseFromString(string source);
-	string objectTostring() const;
+	virtual void parseFromString(string source);
+	virtual string getTipe() const {
+		return "head";
+	}
     
 };
