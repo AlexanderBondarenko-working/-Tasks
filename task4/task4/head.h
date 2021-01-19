@@ -6,8 +6,14 @@ using namespace std;
 
 class Head : public Element {
 public:
-	virtual void parseFromString(string source);
-	virtual string getTipe() const {
+	virtual void parseAttributesFromString(string source) {
+		//none
+	}
+
+	virtual void parseElementsFromString(string source) {
+		//none
+	}
+	virtual string getNameOfElement() const {
 		return "head";
 	}
     

@@ -4,3 +4,4 @@
 #include "meta.h"
 #include "script.h"
 #include "title.h"
+#include "comment.h"

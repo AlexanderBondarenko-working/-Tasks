@@ -3,7 +3,7 @@
 
 class Script : public SubElement {
 public:
-	virtual string getTipe() const {
+	virtual string getNameOfSubelement() const {
 		return "script";
 	}
 };

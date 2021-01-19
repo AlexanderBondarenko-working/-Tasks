@@ -4,6 +4,7 @@
 
 class Type : public Attribute {
 public:
+	Type(string valueOfAttribute) : Attribute(valueOfAttribute) {}
 	virtual string getNameOfAttribute() {
 		return "type";
 	}

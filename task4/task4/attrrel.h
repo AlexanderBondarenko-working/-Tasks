@@ -4,6 +4,7 @@
 
 class Rel : public Attribute {
 public:
+	Rel(string valueOfAttribute) : Attribute(valueOfAttribute) {}
 	virtual string getNameOfAttribute() {
 		return "rel";
 	}

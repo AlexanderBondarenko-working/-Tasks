@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TASK4_HTMLDOC_H_ 
+#define TASK4_HTMLDOC_H_
 
 #include <iostream>
 #include <string>
@@ -8,22 +9,24 @@
 #include  <vector>
 #include "attribute.h"
 
+class Parser;
+
 class HTMLDoc {
-	std::string doctype;
+	std::string docType;
 	Parser* parser;
-	vector <pair<string, Attribute>> attributes;
+	vector <pair<string, Attribute *>> attributes;
 	Head head;
 	Body body;
 	
 public:
 	HTMLDoc();
 	HTMLDoc(Parser* parser);
-	void parse(); //call parser.parse
+	void parse();
 	string objectToString() const;
-
-	string getDoctype() const;
-	string getHead() const;
-	string getBody() const;
-
-
+	virtual ~HTMLDoc();
+	void addAttribute(Attribute* atr);
+	void parseFromString(string& source);
+	void setDocType(string& source);
 };
+
+#endif //TASK4_HTMLDOC_H

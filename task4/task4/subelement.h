@@ -10,27 +10,36 @@ using namespace std;
 
 
 class SubElement {
-	vector <pair<string, Attribute>> attributes;
+protected:
+	vector <pair<string, Attribute *>> attributes;
 	string valueOfSubElement;
 public:
-	virtual string getTipe() const = 0;
+	virtual string getNameOfSubelement() const = 0;
 	virtual string objToString() const {
 		string object = "<";
-		object += getTipe();
+		object += getNameOfSubelement();
 		for (auto iter = attributes.begin(); iter < attributes.end(); ++iter) {
 			object += " ";
-			object += (iter->second).getNameOfAttribute();
+			object += (iter->second)->getNameOfAttribute();
 			object += "=\"";
-			object += (iter->second).getValueOfAttribute();
+			object += (iter->second)->getValueOfAttribute();
 			object += "\"";
 		}
 		object += ">";
 		object += valueOfSubElement;
-		object += "</";
-		object += getTipe();
+		object += "<\/";
+		object += getNameOfSubelement();
 		object += ">";
 		return object;
 
+	}
+	void addAttribute(Attribute* atr) {
+		attributes.push_back(make_pair(atr->getNameOfAttribute(), atr));
+	}
+	virtual ~SubElement() {
+		for (auto iter = attributes.begin(); iter < attributes.end(); ++iter) {
+			delete (iter->second);
+		}
 	}
 };
 
