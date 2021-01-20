@@ -5,6 +5,8 @@
 
 class Comment : public SubElement {
 public:
+	Comment(const string& valueOfSubElement) : SubElement(valueOfSubElement) {}
+	Comment() {}
 	virtual string getNameOfSubelement() const {
 		return "comment";
 	}

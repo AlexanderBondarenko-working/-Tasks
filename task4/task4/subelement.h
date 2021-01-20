@@ -14,6 +14,8 @@ protected:
 	vector <pair<string, Attribute *>> attributes;
 	string valueOfSubElement;
 public:
+	SubElement(const string& valueOfSubElement);
+	SubElement();
 	virtual string getNameOfSubelement() const = 0;
 	virtual string objToString() const;
 	//void addAttribute(const string& attributeName, const string& attrubuteValue);

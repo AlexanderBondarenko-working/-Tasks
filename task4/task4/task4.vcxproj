@@ -147,6 +147,7 @@
     <ClCompile Include="parserfromfile.cpp" />
     <ClCompile Include="subelement.cpp" />
     <ClCompile Include="toolsforattributes.cpp" />
+    <ClCompile Include="toolsforsubelements.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="attrasync.h" />
@@ -179,6 +180,7 @@
     <ClInclude Include="subelement.h" />
     <ClInclude Include="title.h" />
     <ClInclude Include="toolsforattributes.h" />
+    <ClInclude Include="toolsforsubelements.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

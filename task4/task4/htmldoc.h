@@ -25,7 +25,7 @@ public:
 	void parse();
 	string objectToString() const;
 	virtual ~HTMLDoc();
-	void addAttribute(const string& attributeName, const string& attrubuteValue);
+	//void addAttribute(const string& attributeName, const string& attrubuteValue);
 	void parseFromString(const string& source);
 	void setDocType(const string& source);
 };

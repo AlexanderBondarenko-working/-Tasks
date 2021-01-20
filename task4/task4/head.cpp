@@ -1,36 +1,36 @@
 #include "head.h"
 
-void Head::parseElementsFromString(const string& source) {
-	int firstPos = 0;
-	int lastPos = 0;
-	string tempString;
-	string nameOfElement;
-	string valueOfElement;
-
-	while (source.find("<", lastPos) != string::npos) {
-		firstPos = source.find("<", lastPos);
-		/*if((source.find(" ", firstPos) != string::npos)
-			&& (source.find(">", firstPos) != string::npos)
-			&& (source.find(" ", firstPos) < source.find(">", firstPos)))
-		{
-			lastPos = source.find(" ", firstPos);
-			nameOfElement = source.substr(firstPos + 1, lastPos - firstPos);
-			firstPos = source.find(">", lastPos);
-			lastPos = firstPos;
-		}*/
-		
-		if ((source.find(">", firstPos) != string::npos) && (firstPos != source.find("<\/", lastPos)))
-		{
-			lastPos = source.find(">", firstPos);
-			selectNameAndValueOfSubelement(nameOfElement, valueOfElement, source, firstPos, lastPos);
-		}
-		else if ((source.find(">", firstPos) != string::npos) && (firstPos == source.find("<\/", lastPos))) {
-			firstPos = source.find("<\/", lastPos);
-			lastPos = source.find(">", firstPos);
-			firstPos = lastPos;
-		}
-		
-	}
+//void Head::parseElementsFromString(const string& source) {
+//	int firstPos = 0;
+//	int lastPos = 0;
+//	string tempString;
+//	string nameOfElement;
+//	string valueOfElement;
+//
+//	while (source.find("<", lastPos) != string::npos) {
+//		firstPos = source.find("<", lastPos);
+//		/*if((source.find(" ", firstPos) != string::npos)
+//			&& (source.find(">", firstPos) != string::npos)
+//			&& (source.find(" ", firstPos) < source.find(">", firstPos)))
+//		{
+//			lastPos = source.find(" ", firstPos);
+//			nameOfElement = source.substr(firstPos + 1, lastPos - firstPos);
+//			firstPos = source.find(">", lastPos);
+//			lastPos = firstPos;
+//		}*/
+//		
+//		if ((source.find(">", firstPos) != string::npos) && (firstPos != source.find("<\/", lastPos)))
+//		{
+//			lastPos = source.find(">", firstPos);
+//			selectNameAndValueOfSubelement(nameOfElement, valueOfElement, source, firstPos, lastPos);
+//		}
+//		else if ((source.find(">", firstPos) != string::npos) && (firstPos == source.find("<\/", lastPos))) {
+//			firstPos = source.find("<\/", lastPos);
+//			lastPos = source.find(">", firstPos);
+//			firstPos = lastPos;
+//		}
+//		
+//	}
 
 	/////////////////////
 	//string tempString;
@@ -87,7 +87,7 @@ void Head::parseElementsFromString(const string& source) {
 	//	addAttributeInVector(attrName, attrValue, attributes);
 	//}
 
-}
+//}
 string Head::getNameOfElement() const {
 	return "head";
 }

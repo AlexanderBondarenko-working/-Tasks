@@ -1,6 +1,10 @@
 #include "subelement.h"
 #include "toolsforattributes.h"
 
+SubElement::SubElement(const string& valueOfSubElement) : valueOfSubElement(valueOfSubElement) {}
+
+SubElement::SubElement() {}
+
 string SubElement::objToString() const {
 	string object = "<";
 	object += getNameOfSubelement();
