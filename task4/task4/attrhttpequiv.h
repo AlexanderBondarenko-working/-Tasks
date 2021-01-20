@@ -5,7 +5,7 @@
 class HttpEquiv : public Attribute {
 public:
 	HttpEquiv(string valueOfAttribute) : Attribute(valueOfAttribute) {}
-	virtual string getNameOfAttribute() {
+	virtual string getNameOfAttribute() const {
 		return "http-equiv";
 	}
 

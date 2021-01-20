@@ -139,9 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="body.cpp" />
+    <ClCompile Include="element.cpp" />
+    <ClCompile Include="head.cpp" />
     <ClCompile Include="htmldoc.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="parserfromfile.cpp" />
+    <ClCompile Include="subelement.cpp" />
+    <ClCompile Include="toolsforattributes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="attrasync.h" />
@@ -173,6 +178,7 @@
     <ClInclude Include="script.h" />
     <ClInclude Include="subelement.h" />
     <ClInclude Include="title.h" />
+    <ClInclude Include="toolsforattributes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

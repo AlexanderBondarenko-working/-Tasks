@@ -5,17 +5,11 @@ using namespace std;
 
 class Body : public Element {
 public:
-	virtual void parseAttributesFromString(string source) {
-		//none
-	}
+	//virtual void parseAttributesFromString(const string& source);
 
-	virtual void parseElementsFromString(string source) {
-		//none
-	}
+	virtual void parseElementsFromString(const string& source);
 
-	virtual string getNameOfElement() const {
-		return "body";
-	}
+	virtual string getNameOfElement() const;
 
 
 };

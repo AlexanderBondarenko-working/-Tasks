@@ -1,5 +1,5 @@
 <!DCTYPE html> == $0
-<html class="js svg svgfilters svgclippaths svgforeignobject smil inlinesvg svgasimg formattribute flexbox csstransforms">
+<html class="js svg svgfilters svgclippaths svgforeignobject smil inlinesvg svgasimg formattribute flexbox csstransforms" class2="2 js svg svgfilters svgclippaths svgforeignobject smil inlinesvg svgasimg formattribute flexbox csstransforms" class3="3 js svg svgfilters svgclippaths svgforeignobject smil inlinesvg svgasimg formattribute flexbox csstransforms">
 <head>
     <!--  -->
     <title>Национальный правовой Интернет-портал Республики Беларусь</title>   

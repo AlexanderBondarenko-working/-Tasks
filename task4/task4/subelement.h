@@ -15,31 +15,10 @@ protected:
 	string valueOfSubElement;
 public:
 	virtual string getNameOfSubelement() const = 0;
-	virtual string objToString() const {
-		string object = "<";
-		object += getNameOfSubelement();
-		for (auto iter = attributes.begin(); iter < attributes.end(); ++iter) {
-			object += " ";
-			object += (iter->second)->getNameOfAttribute();
-			object += "=\"";
-			object += (iter->second)->getValueOfAttribute();
-			object += "\"";
-		}
-		object += ">";
-		object += valueOfSubElement;
-		object += "<\/";
-		object += getNameOfSubelement();
-		object += ">";
-		return object;
-
-	}
-	void addAttribute(Attribute* atr) {
-		attributes.push_back(make_pair(atr->getNameOfAttribute(), atr));
-	}
-	virtual ~SubElement() {
-		for (auto iter = attributes.begin(); iter < attributes.end(); ++iter) {
-			delete (iter->second);
-		}
-	}
+	virtual string objToString() const;
+	//void addAttribute(const string& attributeName, const string& attrubuteValue);
+	virtual void parseAttributesFromString(const string& source);
+	virtual void setValue(const string& source);
+	virtual ~SubElement();
 };
 

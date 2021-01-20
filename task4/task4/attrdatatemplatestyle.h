@@ -5,7 +5,7 @@
 class DataTemplateStyle : public Attribute {
 public:
 	DataTemplateStyle(string valueOfAttribute) : Attribute(valueOfAttribute) {}
-	virtual string getNameOfAttribute() {
+	virtual string getNameOfAttribute() const {
 		return "data-template-style";
 	}
 

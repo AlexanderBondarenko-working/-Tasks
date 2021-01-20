@@ -5,7 +5,7 @@
 class Href : public Attribute {
 public:
 	Href(string valueOfAttribute) : Attribute(valueOfAttribute) {}
-	virtual string getNameOfAttribute() {
+	virtual string getNameOfAttribute() const {
 		return "href";
 	}
 

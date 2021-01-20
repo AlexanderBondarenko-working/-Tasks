@@ -69,7 +69,7 @@ void ParserFromFile::parseHead(Head& headTarget, ifstream& inpt, string& target)
 			target = target.erase(0, lastPos + 1);
 		}
 		//elements
-		while (!inpt.eof() && (target.find("<\/htad>") == string::npos)) {
+		while (!inpt.eof() && (target.find("<\/head>") == string::npos)) {
 			getline(inpt, tempString);	
 			target += tempString;
 		}

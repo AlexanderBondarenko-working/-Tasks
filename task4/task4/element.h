@@ -13,39 +13,13 @@ protected:
 	vector <pair<string, SubElement *>> elements;//name, value
 public:
 	virtual string getNameOfElement() const = 0;
-	virtual void parseAttributesFromString(string source) = 0;
-	virtual void parseElementsFromString(string source) = 0;
-	virtual string objectTostring() const {
-		string object = "<";
-		object += getNameOfElement();
-		for (auto iter = attributes.begin(); iter < attributes.end(); ++iter) {
-			object += " ";
-			object += (iter->second)->getNameOfAttribute();
-			object += "=\"";
-			object += (iter->second)->getValueOfAttribute();
-			object += "\"";
-		}
-		object += ">";
-		object += "\n";
-		for (auto iter = elements.begin(); iter < elements.end(); ++iter) {
-			object += (iter->second)->objToString();
-			object += "\n";
-		}
-		object += "\n";
-		object += "<\/";
-		object += getNameOfElement();
-		object += ">";
-		return object;
-	}
+	virtual void parseAttributesFromString(const string& source);
+	virtual void parseElementsFromString(const string& source) = 0;
+	virtual string objectTostring() const;
+	virtual void selectNameAndValueOfSubelement(string& nameOfElement, string& valueOfElement, const string& source, int& firstPos, int& lastPos);
 
-	void addAttribute(Attribute* atr) {
-		attributes.push_back(make_pair(atr->getNameOfAttribute(), atr));
-	}
+	//void addAttribute(const string& attributeName, const string& attrubuteValue);
 
-	virtual ~Element(){
-		for (auto iter = attributes.begin(); iter < attributes.end(); ++iter) {
-			delete (iter->second);
-		}
-	}
+	virtual ~Element();
 
 };

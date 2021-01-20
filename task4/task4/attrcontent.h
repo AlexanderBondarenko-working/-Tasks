@@ -5,7 +5,7 @@
 class Content : public Attribute {
 public:
 	Content(string valueOfAttribute) : Attribute(valueOfAttribute) {}
-	virtual string getNameOfAttribute() {
+	virtual string getNameOfAttribute() const {
 		return "content";
 	}
 

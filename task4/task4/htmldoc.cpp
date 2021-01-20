@@ -2,8 +2,10 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "toolsforattributes.h"
 
-HTMLDoc::HTMLDoc() {}
+
+HTMLDoc::HTMLDoc() : parser(nullptr) {}
 HTMLDoc::HTMLDoc(Parser* parser) {
 	this->parser = parser;
 }
@@ -33,17 +35,11 @@ HTMLDoc::~HTMLDoc() {
 	}
 }
 
-void HTMLDoc::addAttribute(Attribute* atr) {
-	attributes.push_back(make_pair(atr->getNameOfAttribute(), atr));
-}
-
-void HTMLDoc::setDocType(string& source) {
+void HTMLDoc::setDocType(const string& source) {
 	this->docType = source;
 }
 
-void HTMLDoc::parseFromString(string& source) {
+void HTMLDoc::parseFromString(const string& source) {
 	//input : <html .... attributes ... >
-	//<html class="js svg svgfilters svgclippaths svgforeignobject smil inlinesvg svgasimg formattribute flexbox csstransforms">
-	//none
-	//teg and attributes
+	selectAndAddInVectorAttributes(source, this->attributes);
 }

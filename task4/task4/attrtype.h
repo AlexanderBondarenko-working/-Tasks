@@ -5,7 +5,7 @@
 class Type : public Attribute {
 public:
 	Type(string valueOfAttribute) : Attribute(valueOfAttribute) {}
-	virtual string getNameOfAttribute() {
+	virtual string getNameOfAttribute() const {
 		return "type";
 	}
 

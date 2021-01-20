@@ -5,7 +5,7 @@
 class Src : public Attribute {
 public:
 	Src(string valueOfAttribute) : Attribute(valueOfAttribute) {}
-	virtual string getNameOfAttribute() {
+	virtual string getNameOfAttribute() const {
 		return "src";
 	}
 

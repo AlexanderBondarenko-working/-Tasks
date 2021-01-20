@@ -13,5 +13,5 @@ public:
 	virtual string getValueOfAttribute() const {
 		return valueOfAttribute;
 	}
-	virtual ~Attribute();
+	virtual ~Attribute() {}
 };

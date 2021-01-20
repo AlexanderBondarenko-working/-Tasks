@@ -5,7 +5,7 @@
 class Rel : public Attribute {
 public:
 	Rel(string valueOfAttribute) : Attribute(valueOfAttribute) {}
-	virtual string getNameOfAttribute() {
+	virtual string getNameOfAttribute() const {
 		return "rel";
 	}
 

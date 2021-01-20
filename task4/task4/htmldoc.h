@@ -8,6 +8,7 @@
 #include "parser.h"
 #include  <vector>
 #include "attribute.h"
+#include "toolsforattributes.h"
 
 class Parser;
 
@@ -24,9 +25,9 @@ public:
 	void parse();
 	string objectToString() const;
 	virtual ~HTMLDoc();
-	void addAttribute(Attribute* atr);
-	void parseFromString(string& source);
-	void setDocType(string& source);
+	void addAttribute(const string& attributeName, const string& attrubuteValue);
+	void parseFromString(const string& source);
+	void setDocType(const string& source);
 };
 
 #endif //TASK4_HTMLDOC_H
