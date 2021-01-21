@@ -15,7 +15,7 @@ class Parser;
 class HTMLDoc {
 	std::string docType;
 	Parser* parser;
-	vector <pair<string, Attribute *>> attributes;
+	vector <pair<string, unique_ptr<Attribute>>> attributes;
 	Head head;
 	Body body;
 	

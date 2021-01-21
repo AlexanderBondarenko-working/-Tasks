@@ -4,7 +4,7 @@
 
 class Media : public Attribute {
 public:
-	Media(string valueOfAttribute) : Attribute(valueOfAttribute) {}
+	Media(const string& valueOfAttribute) : Attribute(valueOfAttribute) {}
 	virtual string getNameOfAttribute() const {
 		return "media";
 	}

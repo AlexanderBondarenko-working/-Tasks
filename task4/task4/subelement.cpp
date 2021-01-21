@@ -26,11 +26,11 @@ string SubElement::objToString() const {
 void SubElement::parseAttributesFromString(const string& source) {
 	selectAndAddInVectorAttributes(source, this->attributes);
 }
-void SubElement::setValue(const string& sourse) {
-	valueOfSubElement = sourse;
+
+void SubElement::parseElementFromString(const string& source) {
+	valueOfSubElement = source;
 }
-SubElement::~SubElement() {
-	for (auto iter = attributes.begin(); iter < attributes.end(); ++iter) {
-		delete (iter->second);
-	}
-}
+//void SubElement::setValue(const string& sourse) {
+//	valueOfSubElement = sourse;
+//}
+SubElement::~SubElement() {}

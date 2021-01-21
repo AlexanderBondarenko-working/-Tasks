@@ -1,34 +1,34 @@
 #include "toolsforsubelements.h"
 
-void addSubelementInVector(const string& nameOfElement, const string& attributes, const string& valueOfElement, vector <pair<string, SubElement*>>& subelements) {
+void addSubelementInVector(const string& nameOfElement, const string& attributes, const string& valueOfElement, vector <pair<string, unique_ptr<SubElement>>>& subelements) {
 	if (nameOfElement == "comment") {
-		subelements.push_back(make_pair(nameOfElement, (new Comment(valueOfElement))));
+		subelements.push_back(make_pair(nameOfElement, (make_unique<Comment>(valueOfElement))));
 		((subelements.end() - 1)->second)->parseAttributesFromString(attributes);
 	}
 
 	if (nameOfElement == "link") {
-		subelements.push_back(make_pair(nameOfElement, (new Link(valueOfElement))));
+		subelements.push_back(make_pair(nameOfElement, (make_unique<Link>(valueOfElement))));
 		((subelements.end() - 1)->second)->parseAttributesFromString(attributes);
 	}
 
 	if (nameOfElement == "meta") {
-		subelements.push_back(make_pair(nameOfElement, (new Meta(valueOfElement))));
+		subelements.push_back(make_pair(nameOfElement, (make_unique<Meta>(valueOfElement))));
 		((subelements.end() - 1)->second)->parseAttributesFromString(attributes);
 	}
 
 	if (nameOfElement == "script") {
-		subelements.push_back(make_pair(nameOfElement, (new Script(valueOfElement))));
+		subelements.push_back(make_pair(nameOfElement, (make_unique<Script>(valueOfElement))));
 		((subelements.end() - 1)->second)->parseAttributesFromString(attributes);
 	}
 
 	if (nameOfElement == "title") {
-		subelements.push_back(make_pair(nameOfElement, (new Title(valueOfElement))));
+		subelements.push_back(make_pair(nameOfElement, (make_unique<Title>(valueOfElement))));
 		((subelements.end() - 1)->second)->parseAttributesFromString(attributes);
 	}
 
 }
 
-void selectAndAddInVectorSubelements(const string& source, vector <pair<string, SubElement*>>& elements) {
+void selectAndAddInVectorSubelements(const string& source, vector <pair<string, unique_ptr<SubElement>>>& elements) {
 	int firstPos = 0;
 	int lastPos = 0;
 	string tempString;

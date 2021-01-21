@@ -11,7 +11,7 @@ using namespace std;
 
 class SubElement {
 protected:
-	vector <pair<string, Attribute *>> attributes;
+	vector <pair<string, unique_ptr<Attribute>>> attributes;
 	string valueOfSubElement;
 public:
 	SubElement(const string& valueOfSubElement);
@@ -19,8 +19,9 @@ public:
 	virtual string getNameOfSubelement() const = 0;
 	virtual string objToString() const;
 	//void addAttribute(const string& attributeName, const string& attrubuteValue);
+	virtual void parseElementFromString(const string& source);
 	virtual void parseAttributesFromString(const string& source);
-	virtual void setValue(const string& source);
+	//virtual void setValue(const string& source);
 	virtual ~SubElement();
 };
 

@@ -9,8 +9,8 @@ using namespace std;
 
 class Element {
 protected:
-	vector <pair<string, Attribute *>> attributes;// name, value
-	vector <pair<string, SubElement *>> elements;//name, value
+	vector <pair<string, unique_ptr<Attribute>>> attributes;// name, value
+	vector <pair<string, unique_ptr<SubElement>>> elements;//name, value
 public:
 	virtual string getNameOfElement() const = 0;
 	virtual void parseAttributesFromString(const string& source);

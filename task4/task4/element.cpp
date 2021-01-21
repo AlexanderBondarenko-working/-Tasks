@@ -22,6 +22,7 @@ string Element::objectTostring() const {
 	object += "<\/";
 	object += getNameOfElement();
 	object += ">";
+	object += ">\n";
 	return object;
 }
 
@@ -46,8 +47,4 @@ void Element::parseElementsFromString(const string& source) {
 //	firstPos = lastPos;
 //}
 
-Element::~Element() {
-	for (auto iter = attributes.begin(); iter < attributes.end(); ++iter) {
-		delete (iter->second);
-	}
-}
+Element::~Element() {}

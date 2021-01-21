@@ -4,7 +4,7 @@
 
 class Asynck : public Attribute {
 public:
-	Asynck(string valueOfAttribute) : Attribute(valueOfAttribute) {}
+	Asynck(const string& valueOfAttribute) : Attribute(valueOfAttribute) {}
 	virtual string getNameOfAttribute() const {
 		return "asynck";
 	}

@@ -4,7 +4,7 @@
 
 class Property : public Attribute {
 public:
-	Property(string valueOfAttribute) : Attribute(valueOfAttribute) {}
+	Property(const string& valueOfAttribute) : Attribute(valueOfAttribute) {}
 	virtual string getNameOfAttribute() const {
 		return "property";
 	}

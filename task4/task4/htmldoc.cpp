@@ -27,13 +27,10 @@ string HTMLDoc::objectToString() const {
 	object += head.objectTostring();
 	object += body.objectTostring();
 	object += "<\/html>";
+	object += ">\n";
 	return object;
 }
-HTMLDoc::~HTMLDoc() {
-	for (auto iter = attributes.begin(); iter < attributes.end(); ++iter) {
-		delete (iter->second);
-	}
-}
+HTMLDoc::~HTMLDoc() {}
 
 void HTMLDoc::setDocType(const string& source) {
 	this->docType = source;
