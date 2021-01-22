@@ -1,34 +1,34 @@
 #include "toolsforsubelements.h"
 
-void addSubelementInVector(const string& nameOfElement, const string& attributes, const string& valueOfElement, vector <pair<string, unique_ptr<SubElement>>>& subelements) {
+void toolsForSubelements::addSubelementInVector(const string& nameOfElement, const string& attributes, const string& valueOfElement, vector <pair<nameOfSubelement::nameOfSubelement, unique_ptr<SubElement>>>& subelements) {
 	if (nameOfElement == "comment") {
-		subelements.push_back(make_pair(nameOfElement, (make_unique<Comment>(valueOfElement))));
+		subelements.push_back(make_pair(nameOfSubelement::COMMENT, (make_unique<SubElement>(valueOfElement, nameOfSubelement::COMMENT))));
 		((subelements.end() - 1)->second)->parseAttributesFromString(attributes);
 	}
 
 	if (nameOfElement == "link") {
-		subelements.push_back(make_pair(nameOfElement, (make_unique<Link>(valueOfElement))));
+		subelements.push_back(make_pair(nameOfSubelement::LINK, (make_unique<SubElement>(valueOfElement, nameOfSubelement::LINK))));
 		((subelements.end() - 1)->second)->parseAttributesFromString(attributes);
 	}
 
 	if (nameOfElement == "meta") {
-		subelements.push_back(make_pair(nameOfElement, (make_unique<Meta>(valueOfElement))));
+		subelements.push_back(make_pair(nameOfSubelement::META, (make_unique<SubElement>(valueOfElement, nameOfSubelement::META))));
 		((subelements.end() - 1)->second)->parseAttributesFromString(attributes);
 	}
 
 	if (nameOfElement == "script") {
-		subelements.push_back(make_pair(nameOfElement, (make_unique<Script>(valueOfElement))));
+		subelements.push_back(make_pair(nameOfSubelement::SCRIPT, (make_unique<SubElement>(valueOfElement, nameOfSubelement::SCRIPT))));
 		((subelements.end() - 1)->second)->parseAttributesFromString(attributes);
 	}
 
 	if (nameOfElement == "title") {
-		subelements.push_back(make_pair(nameOfElement, (make_unique<Title>(valueOfElement))));
+		subelements.push_back(make_pair(nameOfSubelement::TITLE, (make_unique<SubElement>(valueOfElement, nameOfSubelement::TITLE))));
 		((subelements.end() - 1)->second)->parseAttributesFromString(attributes);
 	}
 
 }
 
-void selectAndAddInVectorSubelements(const string& source, vector <pair<string, unique_ptr<SubElement>>>& elements) {
+void toolsForSubelements::convertSubelementsToVector(const string& source, vector <pair<nameOfSubelement::nameOfSubelement, unique_ptr<SubElement>>>& elements) {
 	int firstPos = 0;
 	int lastPos = 0;
 	string tempString;
@@ -63,7 +63,7 @@ void selectAndAddInVectorSubelements(const string& source, vector <pair<string, 
 }
 
 
-void selectNameAndValueOfSubelement(string& nameOfElement, string& valueOfElement, const string& source, int& firstPos, int& lastPos) {
+void toolsForSubelements::selectNameAndValueOfSubelement(string& nameOfElement, string& valueOfElement, const string& source, int& firstPos, int& lastPos) {
 	if (source.find("<!--", firstPos) == firstPos) {
 		lastPos = source.find("-->", firstPos);
 		nameOfElement = "comment";

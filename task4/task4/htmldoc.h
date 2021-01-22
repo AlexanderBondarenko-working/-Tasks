@@ -3,28 +3,28 @@
 
 #include <iostream>
 #include <string>
-#include "body.h"
-#include "head.h"
 #include "parser.h"
 #include  <vector>
 #include "attribute.h"
 #include "toolsforattributes.h"
+#include "namesofattributes.h"
+#include "element.h"
 
 class Parser;
 
 class HTMLDoc {
 	std::string docType;
 	Parser* parser;
-	vector <pair<string, unique_ptr<Attribute>>> attributes;
-	Head head;
-	Body body;
+	vector <pair<nameOfAttribute::nameOfAttribute, unique_ptr<Attribute>>> attributes;
+	Element head;
+	Element body;
 	
 public:
 	HTMLDoc();
 	HTMLDoc(Parser* parser);
 	void parse();
 	string objectToString() const;
-	virtual ~HTMLDoc();
+	~HTMLDoc();
 	//void addAttribute(const string& attributeName, const string& attrubuteValue);
 	void parseFromString(const string& source);
 	void setDocType(const string& source);

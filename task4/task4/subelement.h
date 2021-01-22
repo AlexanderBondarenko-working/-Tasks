@@ -1,27 +1,29 @@
 #pragma once
 
-#pragma once
 #include <iostream> 
 #include <vector> 
 #include <string>
 #include "attribute.h"
 #include <iterator>
-using namespace std;
+#include "namesofsubelements.h"
+#include "namesofattributes.h"
 
+using namespace std;
 
 class SubElement {
 protected:
-	vector <pair<string, unique_ptr<Attribute>>> attributes;
+	vector <pair<nameOfAttribute::nameOfAttribute, unique_ptr<Attribute>>> attributes;
 	string valueOfSubElement;
+	nameOfSubelement::nameOfSubelement nameOfSubelement;
 public:
-	SubElement(const string& valueOfSubElement);
+	SubElement(const string& valueOfSubElement, nameOfSubelement::nameOfSubelement nameOfSubelement);
 	SubElement();
-	virtual string getNameOfSubelement() const = 0;
-	virtual string objToString() const;
+	string getNameOfSubelement() const;
+	string objToString() const;
 	//void addAttribute(const string& attributeName, const string& attrubuteValue);
-	virtual void parseElementFromString(const string& source);
-	virtual void parseAttributesFromString(const string& source);
+	void parseElementFromString(const string& source);
+	void parseAttributesFromString(const string& source);
 	//virtual void setValue(const string& source);
-	virtual ~SubElement();
+	~SubElement();
 };
 

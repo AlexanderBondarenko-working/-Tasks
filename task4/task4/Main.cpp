@@ -8,8 +8,8 @@ int main() {
 	HTMLDoc htmldoc(parser);
 	htmldoc.parse();
 	
-	/*ofstream out("out.txt");
-	out << htmldoc.objectToString() << endl;
-	out.close();*/
+	//ofstream out("out.txt");
+	cout << htmldoc.objectToString() << endl;
+	//out.close();
 	return 0;
 }

@@ -5,8 +5,8 @@
 #include "toolsforattributes.h"
 
 
-HTMLDoc::HTMLDoc() : parser(nullptr) {}
-HTMLDoc::HTMLDoc(Parser* parser) {
+HTMLDoc::HTMLDoc() : parser(nullptr), head(nameOfElement::HEAD), body(nameOfElement::BODY) {}
+HTMLDoc::HTMLDoc(Parser* parser) : head(nameOfElement::HEAD), body(nameOfElement::BODY) {
 	this->parser = parser;
 }
 void HTMLDoc::parse() {
@@ -17,10 +17,7 @@ string HTMLDoc::objectToString() const {
 	object += "\n<html ";
 	for (auto iter = attributes.begin(); iter < attributes.end(); ++iter) {
 		object += " ";
-		object += (iter->second)->getNameOfAttribute();
-		object += "=\"";
-		object += (iter->second)->getValueOfAttribute();
-		object += "\"";
+		object += (iter->second)->objToString();
 	}
 	object += ">\n";
 	//body and head
@@ -38,5 +35,5 @@ void HTMLDoc::setDocType(const string& source) {
 
 void HTMLDoc::parseFromString(const string& source) {
 	//input : <html .... attributes ... >
-	selectAndAddInVectorAttributes(source, this->attributes);
+	toolsForAttributes::convertAttributesToVector(source, this->attributes);
 }

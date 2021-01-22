@@ -2,18 +2,19 @@
 #include "toolsforattributes.h"
 #include "toolsforsubelements.h"
 
+Element::Element(nameOfElement::nameOfElement nameOfElement) : nameOfElement(nameOfElement) {}
+
+Element::Element() {}
+
 string Element::objectTostring() const {
 	string object = "<";
 	object += getNameOfElement();
 	for (auto iter = attributes.begin(); iter < attributes.end(); ++iter) {
-		object += " ";
-		object += (iter->second)->getNameOfAttribute();
-		object += "=\"";
-		object += (iter->second)->getValueOfAttribute();
-		object += "\"";
+		object += " "; //in atr
+		object += (iter->second)->objToString(); //in atr
 	}
-	object += ">";
-	object += "\n";
+	object += ">"; //in atr
+	object += "\n"; 
 	for (auto iter = elements.begin(); iter < elements.end(); ++iter) {
 		object += (iter->second)->objToString();
 		object += "\n";
@@ -27,24 +28,23 @@ string Element::objectTostring() const {
 }
 
 void Element::parseAttributesFromString(const string& source) {
-	selectAndAddInVectorAttributes(source, this->attributes);
+	toolsForAttributes::convertAttributesToVector(source, this->attributes);//name? convert attributes to vector
 }
 
 void Element::parseElementsFromString(const string& source) {
-	selectAndAddInVectorSubelements(source, this->elements);
+	toolsForSubelements::convertSubelementsToVector(source, elements);//name?
 }
 
-//void Element::selectNameAndValueOfSubelement(string& nameOfElement, string& valueOfElement, const string& source, int& firstPos, int& lastPos) {
-//	if (source.find("<!--", firstPos) == firstPos) {
-//		lastPos = source.find("-->", firstPos);
-//		nameOfElement = "comment";
-//		valueOfElement = source.substr(firstPos + 4, lastPos - firstPos - 4);
-//	}
-//	else {
-//		nameOfElement = source.substr(firstPos + 1, lastPos - firstPos - 1);
-//		valueOfElement = source.substr(lastPos + 1, source.find("<", lastPos) - lastPos - 1);
-//	}
-//	firstPos = lastPos;
-//}
+string Element::getNameOfElement() const {
+	switch (this->nameOfElement) {
+	case nameOfElement::BODY:
+		return "body";
+		break;
+	case nameOfElement::HEAD:
+		return "head";
+		break;
+	}
+}
+
 
 Element::~Element() {}

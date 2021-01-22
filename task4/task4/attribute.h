@@ -1,18 +1,20 @@
 #pragma once
 
 #include <string>
+#include "namesofattributes.h"
 
 using namespace std;
 
 class Attribute {
 protected:
 	string valueOfAttribute;
+	nameOfAttribute::nameOfAttribute nameOfAttribute;
 public:
-	Attribute(const string& valueOfAttribute) : valueOfAttribute(valueOfAttribute) {}
-	Attribute() {}
-	virtual string getNameOfAttribute() const = 0;
-	virtual string getValueOfAttribute() const {
-		return valueOfAttribute;
-	}
-	virtual ~Attribute() {}
+	Attribute(const string& valueOfAttribute, nameOfAttribute::nameOfAttribute nameOfAttribute);
+	Attribute();
+	//Attribute(const Attribute& source);
+	string getNameOfAttribute() const;
+	string getValueOfAttribute() const;
+	string objToString() const;
+	~Attribute() {}
 };

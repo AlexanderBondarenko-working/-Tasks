@@ -1,6 +1,6 @@
 #include "parserfromfile.h"
 
-void ParserFromFile::parse(HTMLDoc& targetHTMLDoc, Body& bodyTarget, Head& headTarget) const {
+void ParserFromFile::parse(HTMLDoc& targetHTMLDoc, Element& bodyTarget, Element& headTarget) const {
 	ifstream inpt(filename);
 	if (inpt.is_open()) {
 
@@ -48,7 +48,7 @@ void ParserFromFile::parseDocType(HTMLDoc& targetHTMLDoc, ifstream& inpt, string
 }
 
 
-void ParserFromFile::parseHead(Head& headTarget, ifstream& inpt, string& target) const {
+void ParserFromFile::parseHead(Element& headTarget, ifstream& inpt, string& target) const {
 	string tempString;
 	int firstPos;
 	int lastPos;
@@ -82,7 +82,7 @@ void ParserFromFile::parseHead(Head& headTarget, ifstream& inpt, string& target)
 	}
 }
 
-void ParserFromFile::parseBody(Body& bodyTarget, ifstream& inpt, string& target) const {
+void ParserFromFile::parseBody(Element& bodyTarget, ifstream& inpt, string& target) const {
 	string tempString;
 	int firstPos;
 	int lastPos;
