@@ -44,7 +44,23 @@ string Element::getNameOfElement() const {
 		return "head";
 		break;
 	}
+	return "";
 }
 
+void Element::addSubelement(const SubElement& subelement) {
+	elements.push_back(make_pair(subelement.getNumberOfName(), make_unique<SubElement>(subelement)));
+	string message;
+	message += "added element ";
+	message += subelement.getNameOfSubelement();
+	elements.push_back(make_pair(nameOfSubelement::COMMENT, make_unique<SubElement>(message, nameOfSubelement::COMMENT)));
+}
+
+void Element::addAttribute(const nameOfAttribute::nameOfAttribute name, const string& value) {
+	attributes.push_back(make_pair(name, make_unique<Attribute>(value, name)));
+	string message;
+	message += "added attribute ";
+	message += (attributes.end() - 1) -> second -> getNameOfAttribute();
+	elements.emplace(elements.begin(), make_pair(nameOfSubelement::COMMENT, make_unique<SubElement>(message, nameOfSubelement::COMMENT)));
+}
 
 Element::~Element() {}

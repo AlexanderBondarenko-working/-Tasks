@@ -18,6 +18,7 @@ class HTMLDoc {
 	vector <pair<nameOfAttribute::nameOfAttribute, unique_ptr<Attribute>>> attributes;
 	Element head;
 	Element body;
+	vector <pair<nameOfSubelement::nameOfSubelement, unique_ptr<SubElement>>> comments;
 	
 public:
 	HTMLDoc();
@@ -28,6 +29,12 @@ public:
 	//void addAttribute(const string& attributeName, const string& attrubuteValue);
 	void parseFromString(const string& source);
 	void setDocType(const string& source);
+
+	void addHTMLAttribute(const nameOfAttribute::nameOfAttribute name, const string& value);
+	void addHeadAttribute(const nameOfAttribute::nameOfAttribute name, const string& value);
+	void addBodyAttribute(const nameOfAttribute::nameOfAttribute name, const string& value);
+	void addSubelementInHead(const SubElement& subelement);
+	void addSubelementInBody(const SubElement& subelement);
 };
 
 #endif //TASK4_HTMLDOC_H

@@ -59,6 +59,10 @@ string Attribute::getValueOfAttribute() const {
 	return valueOfAttribute;
 }
 
+nameOfAttribute::nameOfAttribute Attribute::getNumberOfName() {
+	return nameOfAttribute;
+}
+
 string Attribute::objToString() const {
 	string attribute = getNameOfAttribute();
 	attribute += "=\"";

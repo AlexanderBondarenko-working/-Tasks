@@ -18,6 +18,7 @@ protected:
 public:
 	SubElement(const string& valueOfSubElement, nameOfSubelement::nameOfSubelement nameOfSubelement);
 	SubElement();
+	SubElement(const SubElement& source);
 	string getNameOfSubelement() const;
 	string objToString() const;
 	//void addAttribute(const string& attributeName, const string& attrubuteValue);
@@ -25,5 +26,7 @@ public:
 	void parseAttributesFromString(const string& source);
 	//virtual void setValue(const string& source);
 	~SubElement();
+	void addAttribute(const nameOfAttribute::nameOfAttribute, const string& value);
+	nameOfSubelement::nameOfSubelement getNumberOfName() const;
 };
 

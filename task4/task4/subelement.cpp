@@ -5,6 +5,16 @@ SubElement::SubElement(const string& valueOfSubElement, nameOfSubelement::nameOf
 
 SubElement::SubElement() {}
 
+SubElement::SubElement(const SubElement& source) {
+	for (auto iter = source.attributes.begin(); iter < source.attributes.end(); ++iter) {
+		//this->attributes.push_back(*iter);
+		this->attributes.push_back(make_pair(iter->first, make_unique<Attribute>(iter->second->getValueOfAttribute(), iter->second->getNumberOfName())));
+	}
+
+	this->nameOfSubelement = source.nameOfSubelement;
+	this->valueOfSubElement = source.valueOfSubElement;
+}
+
 string SubElement::objToString() const {
 	string object;
 	if (nameOfSubelement == nameOfSubelement::COMMENT) {
@@ -58,4 +68,9 @@ string SubElement::getNameOfSubelement() const {
 	}
 	return "";
 }
+
+nameOfSubelement::nameOfSubelement SubElement::getNumberOfName() const {
+	return nameOfSubelement;
+}
+
 SubElement::~SubElement() {}

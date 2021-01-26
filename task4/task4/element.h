@@ -15,6 +15,7 @@ protected:
 	vector <pair<nameOfAttribute::nameOfAttribute, unique_ptr<Attribute>>> attributes;// name, value
 	vector <pair<nameOfSubelement::nameOfSubelement, unique_ptr<SubElement>>> elements;//name, value
 	nameOfElement::nameOfElement nameOfElement;
+
 public:
 	Element();
 	Element(nameOfElement::nameOfElement nameOfElement);
@@ -24,8 +25,9 @@ public:
 	string objectTostring() const;
 	//virtual void selectNameAndValueOfSubelement(string& nameOfElement, string& valueOfElement, const string& source, int& firstPos, int& lastPos);
 	//etNameOfElement();
-	//void addAttribute(const string& attributeName, const string& attrubuteValue);
-
+	void addAttribute(const string& attributeName, const string& attrubuteValue);
+	void addSubelement(const SubElement& subelement);
+	void addAttribute(const nameOfAttribute::nameOfAttribute name, const string& value);
 	~Element();
 
 };
